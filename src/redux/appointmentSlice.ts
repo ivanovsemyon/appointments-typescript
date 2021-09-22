@@ -121,7 +121,7 @@ const appointmentSlice = createSlice({
           state.sortField,
           state.orderBySort
         );
-      } else if (!state.sortField && !state.isFiltered) {
+      } else if (!state.sortField && (!state.startDate || !state.endDate)) {
         state.appointmentsState = state.initialState;
         state.orderBySort = "asc";
       }
