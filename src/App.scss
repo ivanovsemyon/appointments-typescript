@@ -1,38 +1,188 @@
-.App {
-  text-align: center;
-}
+@import '~antd/dist/antd.css';
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  .main_container {
+    display: flex;
+    flex-direction: column;
+    min-width: 375px;
+    min-height: 100vh;
+    margin: 0 auto;
+    background: #c5e9ff;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.ant-select-item {
+  font-size: 18px;
+  @media (max-width: 768px) {
+    font-size: 16px;
   }
-  to {
-    transform: rotate(360deg);
+}
+.ant-select.general-form-select {
+  .ant-select-selector {
+    width: 188px;
+    height: 45px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    @media (max-width: 990px) {
+      width: 150px;
+    }
+    @media (max-width: 768px) {
+      width: 140px;
+    }
+  }
+  .ant-select-selection-item {
+    line-height: 45px;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 300;
+    @media (max-width: 768px) {
+      font-size: 16px;
+    }
+  }
+}
+
+.ant-picker.general-form-datepicker {
+  width: 188px;
+  height: 45px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-family: inherit;
+  font-weight: 300;
+  font-size: 18px;
+  @media (max-width: 990px) {
+    width: 150px;
+  }
+  @media (max-width: 768px) {
+    width: 140px;
+    font-size: 16px;
+  }
+  .ant-picker-input {
+    input {
+      font-size: 18px;
+      font-family: inherit;
+      font-weight: 300;
+      @media (max-width: 768px) {
+        font-size: 16px;
+      }
+    }
+    .ant-calendar-picker-clear:hover {
+      display: none;
+    }
+    .anticon-close-circle {
+      display: none;
+    }
+  }
+}
+
+.ant-select.modal-edit-appointment-select {
+  .ant-select-selector {
+    width: 100%;
+    height: 40px;
+    margin: 8px 0 18px 0;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
+  .ant-select-selection-item {
+    line-height: 40px;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 300;
+    @media (max-width: 768px) {
+      font-size: 16px;
+    }
+  }
+  .ant-select-arrow {
+    top: calc(50% - 4px);
+  }
+}
+
+.ant-picker.modal-edit-appointment-datepicker {
+  width: 100%;
+  height: 40px;
+  margin: 8px 0 18px 0;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-family: inherit;
+  font-weight: 300;
+  font-size: 18px;
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+  .ant-picker-input {
+    input {
+      font-size: 18px;
+      font-family: inherit;
+      font-weight: 300;
+      @media (max-width: 768px) {
+        font-size: 16px;
+      }
+    }
+    .ant-calendar-picker-clear:hover {
+      display: none;
+    }
+    .anticon-close-circle {
+      display: none;
+    }
+  }
+}
+
+.ant-select.sort_wrapper_select {
+  .ant-select-selector {
+    width: 200px;
+    height: 47px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    @media (max-width: 768px) {
+      width: 180px;
+    }
+  }
+  .ant-select-selection-item {
+    line-height: 47px;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 300;
+    @media (max-width: 768px) {
+      font-size: 16px;
+    }
+  }
+}
+
+.ant-picker.filter_datepicker {
+  min-width: 238px;
+  height: 40px;
+  margin-right: 24px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-family: inherit;
+  font-weight: 300;
+  font-size: 18px;
+  @media (max-width: 970px) {
+    min-width: 175px;
+  }
+  @media (max-width: 768px) {
+    font-size: 16px;
+    margin: 0;
+  }
+  @media (max-width: 480px) {
+    width: calc(90% - 8px);
+  }
+  .ant-picker-input input {
+    font-size: 18px;
+    font-family: inherit;
+    font-weight: 300;
+    @media (max-width: 768px) {
+      font-size: 16px;
+    }
+  }
+  .anticon-close-circle {
+    svg {
+      width: 23px;
+      height: 23px;
+    }
   }
 }

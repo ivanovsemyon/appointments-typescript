@@ -1,0 +1,40 @@
+.main_header {
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @media (max-width: 767px) {
+    justify-content: space-evenly;
+  }
+  @media (max-width: 480px) {
+    min-width: 375px;
+  }
+
+  .header_logo {
+    width: 90px;
+    height: 72px;
+    margin: 20px 90px 20px 40px;
+    @media (max-width: 767px) {
+      margin: 10px 45px 10px 20px;
+      width: 60px;
+      height: 48px;
+    }
+  }
+
+  .header_label {
+    font-weight: 300;
+    font-size: 36px;
+    margin: 0 auto;
+    @media (max-width: 767px) {
+      font-size: 30px;
+    }
+    @media (max-width: 480px) {
+      font-size: 24px;
+    }
+  }
+  .header_logout_button {
+    @media (max-width: 480px) {
+      margin-right: 20px;
+    }
+  }
+}

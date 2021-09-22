@@ -1,0 +1,145 @@
+.name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26%;
+  @media (max-width: 480px) {
+    position: relative;
+    width: 100%;
+    margin-top: 18px;
+    &::before {
+      content: "Имя:";
+      position: absolute;
+      top: -19px;
+      border: 1px solid #000000;
+      width: calc(100% + 2px);
+      font-size: 12px;
+      background: #c4c4c4;
+    }
+  }
+}
+.doctor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+  @media (max-width: 480px) {
+    position: relative;
+    width: 100%;
+    margin-top: 18px;
+    &::before {
+      content: "Врач:";
+      position: absolute;
+      top: -19px;
+      border: 1px solid #000000;
+      width: calc(100% + 2px);
+      font-size: 12px;
+      background: #c4c4c4;
+    }
+  }
+}
+.date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 17%;
+  @media (max-width: 480px) {
+    position: relative;
+    width: 100%;
+    margin-top: 18px;
+    &::before {
+      content: "Дата:";
+      position: absolute;
+      top: -19px;
+      border: 1px solid #000000;
+      width: calc(100% + 2px);
+      font-size: 12px;
+      background: #c4c4c4;
+    }
+  }
+}
+.complaint {
+  position: relative;
+  width: 20%;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  @media (max-width: 480px) {
+    width: 100%;
+    overflow: visible;
+    margin-top: 18px;
+    &::before {
+      content: "Жалобы:";
+      position: absolute;
+      top: -19px;
+      left: -1px;
+      border: 1px solid #000000;
+      width: calc(100% + 2px);
+      font-size: 12px;
+      background: #c4c4c4;
+    }
+  }
+}
+@media (max-width: 480px) {
+  background: none;
+  border: none;
+  .tablet_row {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    margin-bottom: 10px;
+  }
+}
+.tablet_row {
+  display: flex;
+  @media (max-width: 480px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    margin-bottom: 10px;
+  }
+  .tablet_row_item {
+    font-size: 18px;
+    text-align: center;
+    padding: 5px 5px;
+    border-right: 2px solid #000000;
+    @media (max-width: 768px) {
+      font-size: 16px;
+    }
+    @media (max-width: 480px) {
+      border: 1px solid #000000;
+    }
+  }
+  .tablet_row_item_button_wrapper {
+    width: 12%;
+    display: flex;
+    justify-content: center;
+    @media (max-width: 480px) {
+      width: 100%;
+      border: 1px solid #000000;
+    }
+    .tablet_row_item_button {
+      margin: 0 13px;
+      padding: 0;
+      border: none;
+      background: white;
+      cursor: pointer;
+      @media (max-width: 768px) {
+        margin: 0 8px;
+      }
+      @media (max-width: 480px) {
+        img {
+          margin: 4px 8px;
+          width: 27px;
+          height: 27px;
+        }
+      }
+    }
+  }
+}

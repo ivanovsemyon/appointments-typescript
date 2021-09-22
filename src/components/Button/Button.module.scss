@@ -1,0 +1,19 @@
+.button {
+  width: 160px;
+  border-radius: 4px;
+  cursor: pointer;
+  &:disabled {
+    cursor: not-allowed;
+  }
+  @media (max-width: 1024px) {
+    width: 145px;
+    font-size: 16px;
+    margin: 0;
+  }
+  @media (max-width: 768px) {
+    width: 130px;
+  }
+  @media (max-width: 480px) {
+    width: 120px;
+  }
+}

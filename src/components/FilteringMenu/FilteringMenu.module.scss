@@ -1,0 +1,50 @@
+.filter_wrapper {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  margin: 0 auto 30px;
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  .filter_text {
+    font-size: 18px;
+    margin: 0 8px 0 0;
+    @media (max-width: 768px) {
+      font-size: 16px;
+      margin: 0;
+    }
+    @media (max-width: 480px) {
+      width: calc(10% - 8px);
+    }
+  }
+
+  .btn_filtered {
+    @media (max-width: 480px) {
+      width: calc(70% - 16px);
+      margin-left: auto;
+    }
+  }
+
+  .btn_delete_filter {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    margin-left: 10px;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    img {
+      width: 30px;
+      height: 30px;
+    }
+    @media (max-width: 768px) {
+      margin: 0;
+    }
+    @media (max-width: 480px) {
+      width: calc(20% - 8px);
+    }
+  }
+}
