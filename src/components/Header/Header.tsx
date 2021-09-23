@@ -1,9 +1,8 @@
 import { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 
-import Button from "../Button/Button";
-
 import logo from "../../icons/Logo.svg";
+import Button from "../Button/Button";
 
 import style from "./Header.module.scss";
 

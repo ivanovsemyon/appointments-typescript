@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 
-import Login from "./components/Login/Login";
 import General from "./components/General/General";
+import Login from "./components/Login/Login";
 import Registration from "./components/Registration/Registration";
 
 import "./App.scss";

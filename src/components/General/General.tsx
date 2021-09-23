@@ -1,14 +1,12 @@
 import { Dispatch, SetStateAction, useEffect } from "react";
-
 import { Redirect } from "react-router-dom";
 
-import Header from "../Header/Header";
-import AddingNewAppointment from "../AddingNewAppointment/AddingNewAppointment";
-import SortMenu from "../SortMenu/SortMenu";
-import FilteringMenu from "../FilteringMenu/FilteringMenu";
-import Tablet from "../Tablet/Tablet";
-
 import { tokenVerify } from "../../services/usersService";
+import AddingNewAppointment from "../AddingNewAppointment/AddingNewAppointment";
+import FilteringMenu from "../FilteringMenu/FilteringMenu";
+import Header from "../Header/Header";
+import SortMenu from "../SortMenu/SortMenu";
+import Tablet from "../Tablet/Tablet";
 
 import style from "./General.module.scss";
 

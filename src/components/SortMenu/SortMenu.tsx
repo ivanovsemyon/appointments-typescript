@@ -1,7 +1,9 @@
 import { useCallback } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
+import { Select } from "antd";
 
+import addFilter from "../../icons/AddFilter.svg";
+import arrow from "../../icons/Arrow-bottom.svg";
 import {
   appointmentsFilterAction,
   appointmentsSortAction,
@@ -12,11 +14,6 @@ import {
   setSortFieldAction,
   sortFieldSlice,
 } from "../../redux/appointmentSlice";
-
-import { Select } from "antd";
-
-import arrow from "../../icons/Arrow-bottom.svg";
-import addFilter from "../../icons/AddFilter.svg";
 
 import style from "./SortMenu.module.scss";
 
