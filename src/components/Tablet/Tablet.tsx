@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -33,6 +34,7 @@ const Tablet = ({ isLogin }: IPropsTablet) => {
       dispatch(getAppointments());
     }
   }, [isLogin, dispatch]);
+
   return (
     <div className={style.tablet}>
       <div className={style.tablet_header}>

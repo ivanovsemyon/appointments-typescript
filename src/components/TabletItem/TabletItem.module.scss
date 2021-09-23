@@ -18,6 +18,7 @@
     }
   }
 }
+
 .doctor {
   display: flex;
   align-items: center;
@@ -38,6 +39,7 @@
     }
   }
 }
+
 .date {
   display: flex;
   align-items: center;
@@ -58,6 +60,7 @@
     }
   }
 }
+
 .complaint {
   position: relative;
   width: 20%;
@@ -94,6 +97,7 @@
     margin-bottom: 10px;
   }
 }
+
 .tablet_row {
   display: flex;
   @media (max-width: 480px) {

@@ -1,4 +1,4 @@
-import {Dispatch, SetStateAction, useEffect} from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 
 import { Redirect } from "react-router-dom";
 
@@ -13,8 +13,8 @@ import { tokenVerify } from "../../services/usersService";
 import style from "./General.module.scss";
 
 interface IPropsGeneral {
-  isLogin: boolean,
-  setIsLogin: Dispatch<SetStateAction<boolean>>
+  isLogin: boolean;
+  setIsLogin: Dispatch<SetStateAction<boolean>>;
 }
 
 const General = ({ isLogin, setIsLogin }: IPropsGeneral) => {

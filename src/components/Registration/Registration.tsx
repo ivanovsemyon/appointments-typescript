@@ -1,4 +1,4 @@
-import {Dispatch, SetStateAction, useCallback, useState} from "react";
+import { Dispatch, SetStateAction, useCallback, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import Header from "../Header/Header";
@@ -11,20 +11,20 @@ import domain from "../../icons/Domain.svg";
 import style from "./Regstration.module.scss";
 
 interface IPropsRegistration {
-    setIsLogin: Dispatch<SetStateAction<boolean>>
+  setIsLogin: Dispatch<SetStateAction<boolean>>;
 }
 
-const Registration = ({ setIsLogin } : IPropsRegistration) => {
-  const history = useHistory();
-
+const Registration = ({ setIsLogin }: IPropsRegistration) => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [error, setError] = useState({
-    login: '',
-    password: '',
-    repeatPassword: '',
+    login: "",
+    password: "",
+    repeatPassword: "",
   });
+
+  const history = useHistory();
 
   const validPassword = passwordRegex.test(password);
 
@@ -85,7 +85,7 @@ const Registration = ({ setIsLogin } : IPropsRegistration) => {
               value={login}
               onChange={(e) => {
                 setLogin(e.target.value);
-                setError({ ...error, login: '' });
+                setError({ ...error, login: "" });
               }}
             />
             <div className={style.form_error_text}>
@@ -99,7 +99,7 @@ const Registration = ({ setIsLogin } : IPropsRegistration) => {
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
-                setError({ ...error, password: '' });
+                setError({ ...error, password: "" });
               }}
             />
             <div className={style.form_error_text}>
@@ -113,7 +113,7 @@ const Registration = ({ setIsLogin } : IPropsRegistration) => {
               value={repeatPassword}
               onChange={(e) => {
                 setRepeatPassword(e.target.value);
-                setError({ ...error, repeatPassword: '' });
+                setError({ ...error, repeatPassword: "" });
               }}
             />
             <div className={style.form_error_text}>

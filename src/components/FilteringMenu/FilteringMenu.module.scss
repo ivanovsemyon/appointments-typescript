@@ -19,14 +19,12 @@
       width: calc(10% - 8px);
     }
   }
-
   .btn_filtered {
     @media (max-width: 480px) {
       width: calc(70% - 16px);
       margin-left: auto;
     }
   }
-
   .btn_delete_filter {
     width: 30px;
     height: 30px;

@@ -1,18 +1,20 @@
-import {useCallback} from "react";
+import { useCallback } from "react";
 import { useHistory } from "react-router-dom";
+
+import Button from "../Button/Button";
 
 import logo from "../../icons/Logo.svg";
 
 import style from "./Header.module.scss";
-import Button from "../Button/Button";
 
 interface IPropsHeader {
-    title?: string,
-    isRenderLogout?: boolean
+  title?: string;
+  isRenderLogout?: boolean;
 }
 
 const Header = ({ title, isRenderLogout }: IPropsHeader) => {
   const history = useHistory();
+
   const onLogout = useCallback(() => {
     history.push("/login");
     localStorage.clear();

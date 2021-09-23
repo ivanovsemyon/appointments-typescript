@@ -1,15 +1,15 @@
 import style from "./Button.module.scss";
 
-interface IPropsHeader {
-  className?: string,
-  label?: string,
-  height?: string,
-  border?: string,
-  background?: string,
-  fontSize?: string,
-  margin?: string,
-  disabled?: boolean,
-  onClick?: any,
+interface IPropsButton {
+  className?: string;
+  label?: string;
+  height?: string;
+  border?: string;
+  background?: string;
+  fontSize?: string;
+  margin?: string;
+  disabled?: boolean;
+  onClick?: any;
 }
 
 const Button = ({
@@ -22,7 +22,7 @@ const Button = ({
   margin,
   disabled,
   onClick,
-}: IPropsHeader) => {
+}: IPropsButton) => {
   const styleProps = {
     height: height,
     border: border,

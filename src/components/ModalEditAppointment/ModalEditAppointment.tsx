@@ -1,28 +1,34 @@
-import {Dispatch, SetStateAction, useCallback, useState} from "react";
+import { Dispatch, SetStateAction, useCallback, useState } from "react";
 
 import { useDispatch } from "react-redux";
 
+import Button from "../Button/Button";
+
 import { changeAppointment } from "../../redux/appointmentSlice";
 
-import { DatePicker, Select } from "antd";
-import moment from "moment";
+import { IAppointment } from "../../interfaces/appointmentInterfaces";
 
 import arrow from "../../icons/Arrow-bottom.svg";
 import calendar from "../../icons/Calendar.svg";
 
+import moment from "moment";
+import { DatePicker, Select } from "antd";
+
 import style from "./ModalEditAppointment.module.scss";
-import Button from "../Button/Button";
-import {IAppointment} from "../../interfaces/appointmentInterfaces";
 
 const { Option } = Select;
 
 interface IPropsModalEdit {
-  item: IAppointment,
-  doctors: Array<string>,
-  setIsEditing: Dispatch<SetStateAction<boolean>>
+  item: IAppointment;
+  doctors: Array<string>;
+  setIsEditing: Dispatch<SetStateAction<boolean>>;
 }
 
-const ModalEditAppointment = ({ item, doctors, setIsEditing }: IPropsModalEdit) => {
+const ModalEditAppointment = ({
+  item,
+  doctors,
+  setIsEditing,
+}: IPropsModalEdit) => {
   const [name, setName] = useState(item.name);
   const [doctor, setDoctor] = useState(item.doctor);
   const [date, setDate] = useState(item.date);

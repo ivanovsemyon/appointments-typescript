@@ -1,5 +1,8 @@
 import { useCallback, useState } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
+
+import Button from "../Button/Button";
 
 import {
   addAppointment,
@@ -12,7 +15,6 @@ import calendar from "../../icons/Calendar.svg";
 import { DatePicker, Select } from "antd";
 
 import style from "./AddingNewAppointment.module.scss";
-import Button from "../Button/Button";
 
 const { Option } = Select;
 

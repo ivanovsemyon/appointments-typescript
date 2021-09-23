@@ -2,6 +2,8 @@ import { useCallback } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
+import Button from "../Button/Button";
+
 import {
   appointmentsFilterAction,
   appointmentsSortAction,
@@ -13,13 +15,12 @@ import {
   endDateSlice,
 } from "../../redux/appointmentSlice";
 
-import { DatePicker } from "antd";
-
 import calendar from "../../icons/Calendar.svg";
 import trash from "../../icons/Trash.svg";
 
+import { DatePicker } from "antd";
+
 import style from "./FilteringMenu.module.scss";
-import Button from "../Button/Button";
 
 const FilteringMenu = () => {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const FilteringMenu = () => {
   const filterAppointments = useCallback(() => {
     dispatch(appointmentsFilterAction());
   }, [dispatch]);
+
   const deleteFilter = useCallback(() => {
     dispatch(setFilteredAction(false));
     dispatch(setStartDateAction(""));
@@ -38,47 +40,47 @@ const FilteringMenu = () => {
   }, [dispatch]);
 
   return (
-     <>
-       {isFiltered && (
-          <div className={style.filter_wrapper}>
-            <p className={style.filter_text}>с:</p>
-            <DatePicker
-              className="filter_datepicker"
-              suffixIcon={<img src={calendar} alt="calendar" />}
-              placeholder=""
-              onChange={(date) => {
-                date !== null
-                  ? dispatch(setStartDateAction(date.format("YYYY-MM-DD")))
-                  : dispatch(setStartDateAction(""));
-              }}
-            />
-            <p className={style.filter_text}>по:</p>
+    <>
+      {isFiltered && (
+        <div className={style.filter_wrapper}>
+          <p className={style.filter_text}>с:</p>
+          <DatePicker
+            className="filter_datepicker"
+            suffixIcon={<img src={calendar} alt="calendar" />}
+            placeholder=""
+            onChange={(date) => {
+              date !== null
+                ? dispatch(setStartDateAction(date.format("YYYY-MM-DD")))
+                : dispatch(setStartDateAction(""));
+            }}
+          />
+          <p className={style.filter_text}>по:</p>
 
-            <DatePicker
-              className="filter_datepicker"
-              suffixIcon={<img src={calendar} alt="calendar" />}
-              placeholder=""
-              onChange={(date) => {
-                date !== null
-                  ? dispatch(setEndDateAction(date.format("YYYY-MM-DD")))
-                  : dispatch(setEndDateAction(""));
-              }}
-            />
-            <Button
-              className={style.btn_filtered}
-              label="Фильтровать"
-              height="40px"
-              fontSize="18px"
-              margin="0 32px 0 16px"
-              disabled={startDate > endDate && endDate !== "" && true}
-              onClick={filterAppointments}
-            />
-            <button className={style.btn_delete_filter} onClick={deleteFilter}>
-              <img src={trash} alt="delete-filter" />
-            </button>
-          </div>
-        )}
-     </>
+          <DatePicker
+            className="filter_datepicker"
+            suffixIcon={<img src={calendar} alt="calendar" />}
+            placeholder=""
+            onChange={(date) => {
+              date !== null
+                ? dispatch(setEndDateAction(date.format("YYYY-MM-DD")))
+                : dispatch(setEndDateAction(""));
+            }}
+          />
+          <Button
+            className={style.btn_filtered}
+            label="Фильтровать"
+            height="40px"
+            fontSize="18px"
+            margin="0 32px 0 16px"
+            disabled={startDate > endDate && endDate !== "" && true}
+            onClick={filterAppointments}
+          />
+          <button className={style.btn_delete_filter} onClick={deleteFilter}>
+            <img src={trash} alt="delete-filter" />
+          </button>
+        </div>
+      )}
+    </>
   );
 };
 

@@ -32,6 +32,7 @@ const SortMenu = () => {
     dispatch(appointmentsSortAction());
     dispatch(appointmentsFilterAction());
   }, [dispatch]);
+
   return (
     <div className={style.sort_wrapper}>
       <p className={style.sort_wrapper_text}>Сортировать по:</p>

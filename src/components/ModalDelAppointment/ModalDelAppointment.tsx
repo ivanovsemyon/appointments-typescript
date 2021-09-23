@@ -1,15 +1,16 @@
-import {Dispatch, SetStateAction, useCallback} from "react";
+import { Dispatch, SetStateAction, useCallback } from "react";
 
 import { useDispatch } from "react-redux";
+
+import Button from "../Button/Button";
 
 import { removeAppointment } from "../../redux/appointmentSlice";
 
 import style from "./ModalDelAppointment.module.scss";
-import Button from "../Button/Button";
 
 interface IPropsModalDel {
-  id: string,
-  setIsDeleting: Dispatch<SetStateAction<boolean>>
+  id: string;
+  setIsDeleting: Dispatch<SetStateAction<boolean>>;
 }
 
 const ModalDelAppointment = ({ id, setIsDeleting }: IPropsModalDel) => {

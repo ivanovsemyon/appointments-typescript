@@ -3,15 +3,16 @@ import { useState } from "react";
 import EditAppointment from "../ModalEditAppointment/ModalEditAppointment";
 import DeleteAppointment from "../ModalDelAppointment/ModalDelAppointment";
 
+import { IAppointment } from "../../interfaces/appointmentInterfaces";
+
 import trash from "../../icons/Trash.svg";
 import pencil from "../../icons/Pencil.svg";
 
 import style from "./TabletItem.module.scss";
-import {IAppointment} from "../../interfaces/appointmentInterfaces";
 
 interface ITabletItemProps {
-    item: IAppointment,
-    doctors: Array<string>
+  item: IAppointment;
+  doctors: Array<string>;
 }
 
 const TabletItem = ({ item, doctors }: ITabletItemProps) => {

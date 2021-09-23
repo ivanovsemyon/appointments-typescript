@@ -1,4 +1,4 @@
-import {Dispatch, SetStateAction, useCallback, useState} from "react";
+import { Dispatch, SetStateAction, useCallback, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import Header from "../Header/Header";
@@ -10,12 +10,13 @@ import domain from "../../icons/Domain.svg";
 import style from "./Login.module.scss";
 
 interface IPropsLogin {
-  setIsLogin: Dispatch<SetStateAction<boolean>>
+  setIsLogin: Dispatch<SetStateAction<boolean>>;
 }
 
 const Login = ({ setIsLogin }: IPropsLogin) => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
+
   const history = useHistory();
 
   const onLogin = useCallback(
