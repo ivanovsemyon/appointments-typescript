@@ -1,9 +1,10 @@
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { DatePicker } from "antd";
 
-import calendar from "../../icons/Calendar.svg";
-import trash from "../../icons/Trash.svg";
+import Button from "../Button/Button";
+
 import {
   appointmentsFilterAction,
   appointmentsSortAction,
@@ -14,7 +15,9 @@ import {
   setStartDateAction,
   startDateSlice,
 } from "../../redux/appointmentSlice";
-import Button from "../Button/Button";
+
+import calendar from "../../icons/Calendar.svg";
+import trash from "../../icons/Trash.svg";
 
 import style from "./FilteringMenu.module.scss";
 

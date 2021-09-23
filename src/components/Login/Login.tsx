@@ -1,9 +1,11 @@
 import { Dispatch, SetStateAction, useCallback, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
-import domain from "../../icons/Domain.svg";
-import { loginUser } from "../../services/usersService";
 import Header from "../Header/Header";
+
+import { loginUser } from "../../services/usersService";
+
+import domain from "../../icons/Domain.svg";
 
 import style from "./Login.module.scss";
 

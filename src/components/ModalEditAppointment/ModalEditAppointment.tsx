@@ -1,13 +1,16 @@
 import { Dispatch, SetStateAction, useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
+
 import { DatePicker, Select } from "antd";
 import moment from "moment";
 
+import Button from "../Button/Button";
+
+import { changeAppointment } from "../../redux/appointmentSlice";
+import { IAppointment } from "../../interfaces/appointmentInterfaces";
+
 import arrow from "../../icons/Arrow-bottom.svg";
 import calendar from "../../icons/Calendar.svg";
-import { IAppointment } from "../../interfaces/appointmentInterfaces";
-import { changeAppointment } from "../../redux/appointmentSlice";
-import Button from "../Button/Button";
 
 import style from "./ModalEditAppointment.module.scss";
 

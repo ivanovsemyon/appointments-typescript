@@ -1,10 +1,12 @@
 import { useState } from "react";
 
-import pencil from "../../icons/Pencil.svg";
-import trash from "../../icons/Trash.svg";
-import { IAppointment } from "../../interfaces/appointmentInterfaces";
 import DeleteAppointment from "../ModalDelAppointment/ModalDelAppointment";
 import EditAppointment from "../ModalEditAppointment/ModalEditAppointment";
+
+import { IAppointment } from "../../interfaces/appointmentInterfaces";
+
+import pencil from "../../icons/Pencil.svg";
+import trash from "../../icons/Trash.svg";
 
 import style from "./TabletItem.module.scss";
 

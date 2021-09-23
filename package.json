@@ -17,7 +17,6 @@
     "@types/react-router-dom": "^5.3.0",
     "antd": "^4.16.13",
     "axios": "^0.21.4",
-    "eslint-plugin-prettier": "^4.0.0",
     "lodash": "^4.17.21",
     "node-sass": "^6.0.1",
     "prettier": "^2.4.1",
@@ -54,8 +53,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-simple-import-sort": "^7.0.0"
-  }
+  "devDependencies": {}
 }

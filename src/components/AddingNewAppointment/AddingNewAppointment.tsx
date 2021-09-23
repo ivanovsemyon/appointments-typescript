@@ -1,14 +1,17 @@
 import { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { DatePicker, Select } from "antd";
 
-import arrow from "../../icons/Arrow-bottom.svg";
-import calendar from "../../icons/Calendar.svg";
+import Button from "../Button/Button";
+
 import {
   addAppointment,
   doctorsStateSlice,
 } from "../../redux/appointmentSlice";
-import Button from "../Button/Button";
+
+import arrow from "../../icons/Arrow-bottom.svg";
+import calendar from "../../icons/Calendar.svg";
 
 import style from "./AddingNewAppointment.module.scss";
 

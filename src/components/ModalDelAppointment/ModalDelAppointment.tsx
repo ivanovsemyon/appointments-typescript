@@ -1,8 +1,9 @@
 import { Dispatch, SetStateAction, useCallback } from "react";
 import { useDispatch } from "react-redux";
 
-import { removeAppointment } from "../../redux/appointmentSlice";
 import Button from "../Button/Button";
+
+import { removeAppointment } from "../../redux/appointmentSlice";
 
 import style from "./ModalDelAppointment.module.scss";
 

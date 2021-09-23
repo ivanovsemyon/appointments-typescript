@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { Spin } from "antd";
+
+import TabletItem from "../TabletItem/TabletItem";
 
 import {
   appointmentsStateSlice,
@@ -8,7 +11,6 @@ import {
   getAppointments,
   isLoadingSlice,
 } from "../../redux/appointmentSlice";
-import TabletItem from "../TabletItem/TabletItem";
 
 import style from "./Tablet.module.scss";
 

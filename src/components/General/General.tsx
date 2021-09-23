@@ -1,12 +1,13 @@
 import { Dispatch, SetStateAction, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 
-import { tokenVerify } from "../../services/usersService";
 import AddingNewAppointment from "../AddingNewAppointment/AddingNewAppointment";
 import FilteringMenu from "../FilteringMenu/FilteringMenu";
 import Header from "../Header/Header";
 import SortMenu from "../SortMenu/SortMenu";
 import Tablet from "../Tablet/Tablet";
+
+import { tokenVerify } from "../../services/usersService";
 
 import style from "./General.module.scss";
 

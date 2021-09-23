@@ -1,14 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { filter, find, inRange, merge, orderBy, remove, uniqBy } from "lodash";
 
-import { filter, inRange, merge, orderBy, remove, uniqBy, find } from "lodash";
-
+import { IAppointment, IState } from "../interfaces/appointmentInterfaces";
 import {
   createAppointment,
   deleteAppointment,
   editAppointment,
   getAllAppointments,
 } from "../services/appointmentsService";
-import { IAppointment, IState } from "../interfaces/appointmentInterfaces";
 
 export const getAppointments = createAsyncThunk(
   "appointments/getAppointments",
