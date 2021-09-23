@@ -8,29 +8,40 @@ import {
   editAppointment,
   getAllAppointments,
 } from "../services/appointmentsService";
-import {IAppointment, IState} from "../interfaces/appointmentInterfaces";
-
+import { IAppointment, IState } from "../interfaces/appointmentInterfaces";
 
 export const getAppointments = createAsyncThunk(
   "appointments/getAppointments",
-  async () => getAllAppointments()
+  async (_, { rejectWithValue }) => getAllAppointments(rejectWithValue)
 );
 
 export const addAppointment = createAsyncThunk(
   "appointments/addAppointment",
-  async ({ name, doctor, date, complaint }: {name: string, doctor: string, date: string, complaint: string}) =>
-    createAppointment(name, doctor, date, complaint)
+  async (
+    {
+      name,
+      doctor,
+      date,
+      complaint,
+    }: {
+      name: string;
+      doctor: string;
+      date: string;
+      complaint: string;
+    },
+    { rejectWithValue }
+  ) => createAppointment(name, doctor, date, complaint, rejectWithValue)
 );
 
 export const removeAppointment = createAsyncThunk(
   "appointments/removeAppointment",
-  (id: string) => deleteAppointment(id)
+  (id: string, { rejectWithValue }) => deleteAppointment(id, rejectWithValue)
 );
 
 export const changeAppointment = createAsyncThunk(
   "appointments/changeAppointment",
-  ({ _id, name, doctor, date, complaint }: IAppointment) =>
-    editAppointment(_id, name, doctor, date, complaint)
+  ({ _id, name, doctor, date, complaint }: IAppointment, { rejectWithValue }) =>
+    editAppointment(_id, name, doctor, date, complaint, rejectWithValue)
 );
 
 const filterList = (state: IState) => {
@@ -91,30 +102,31 @@ const appointmentSlice = createSlice({
       { order: "asc", value: "По возрастанию" },
       { order: "desc", value: "По убыванию" },
     ],
+    isLoading: true,
   } as IState,
 
   reducers: {
-    setSortFieldAction(state, action) {
+    setSortFieldAction(state: IState, action: { payload: string }) {
       state.sortField = action.payload;
     },
 
-    setOrderBySortAction(state, action) {
+    setOrderBySortAction(state: IState, action: { payload: "asc" | "desc" }) {
       state.orderBySort = action.payload;
     },
 
-    setFilteredAction(state, action) {
+    setFilteredAction(state: IState, action: { payload: boolean }) {
       state.isFiltered = action.payload;
     },
 
-    setStartDateAction(state, action) {
+    setStartDateAction(state: IState, action: { payload: string }) {
       state.startDate = action.payload;
     },
 
-    setEndDateAction(state, action) {
+    setEndDateAction(state: IState, action: { payload: string }) {
       state.endDate = action.payload;
     },
 
-    appointmentsSortAction(state) {
+    appointmentsSortAction(state: IState) {
       if (state.sortField) {
         state.appointmentsState = orderBy(
           state.isFiltered ? state.appointmentsState : state.initialState,
@@ -127,23 +139,28 @@ const appointmentSlice = createSlice({
       }
     },
 
-    appointmentsFilterAction(state) {
+    appointmentsFilterAction(state: IState) {
       filterList(state);
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getAppointments.fulfilled, (state, action) => {
-        state.appointmentsState = action.payload;
-        state.initialState = action.payload;
+      .addCase(getAppointments.fulfilled, (state: IState, { payload }) => {
+        state.isLoading = false;
+        state.appointmentsState = payload;
+        state.initialState = payload;
       })
-      .addCase(addAppointment.fulfilled, (state, action) => {
-        state.initialState = uniqBy(
-          state.initialState.concat(action.payload),
-          "_id"
-        );
+      .addCase(getAppointments.rejected, (state: IState, { payload }) => {
+        state.isLoading = false;
+        console.log(payload);
+      })
+      .addCase(getAppointments.pending, (state: IState, { payload }) => {
+        state.isLoading = true;
+      })
+      .addCase(addAppointment.fulfilled, (state: IState, { payload }) => {
+        state.initialState = uniqBy(state.initialState.concat(payload), "_id");
         state.appointmentsState = uniqBy(
-          state.appointmentsState.concat(action.payload),
+          state.appointmentsState.concat(payload),
           "_id"
         );
         if (state.sortField && !state.isFiltered) {
@@ -156,28 +173,29 @@ const appointmentSlice = createSlice({
           filterList(state);
         }
       })
-      .addCase(removeAppointment.fulfilled, (state, action) => {
-        remove(state.initialState, { _id: action.meta.arg });
-        remove(state.appointmentsState, { _id: action.meta.arg });
+      .addCase(addAppointment.rejected, (state: IState, { payload }) => {
+        console.log(payload);
       })
-      .addCase(changeAppointment.fulfilled, (state, action) => {
-        merge(
-          find(state.initialState, { _id: action.meta.arg._id }),
-          action.payload[0]
-        );
-        merge(
-          find(state.appointmentsState, { _id: action.meta.arg._id }),
-          action.payload[0]
-        );
+      .addCase(removeAppointment.fulfilled, (state: IState, { meta }) => {
+        remove(state.initialState, { _id: meta.arg });
+        remove(state.appointmentsState, { _id: meta.arg });
+      })
+      //TODO: rejected возвращает undefined
+      .addCase(removeAppointment.rejected, (state: IState, { payload }) => {
+        console.log(payload);
+      })
+      .addCase(changeAppointment.fulfilled, (state, { payload, meta }) => {
+        merge(find(state.initialState, { _id: meta.arg._id }), payload[0]);
+        merge(find(state.appointmentsState, { _id: meta.arg._id }), payload[0]);
         if (state.startDate !== "" || state.endDate !== "") {
           if (
             !inRange(
-              +action.payload[0].date.split("-").join(""),
+              +payload[0].date.split("-").join(""),
               +state.startDate.split("-").join(""),
               (+state.endDate.split("-").join("") || Infinity) + 1
             )
           ) {
-            remove(state.appointmentsState, { _id: action.meta.arg._id });
+            remove(state.appointmentsState, { _id: meta.arg._id });
           }
         }
         if (state.sortField) {
@@ -187,6 +205,9 @@ const appointmentSlice = createSlice({
             state.orderBySort
           );
         }
+      })
+      .addCase(changeAppointment.rejected, (state: IState, { payload }) => {
+        console.log(payload);
       });
   },
 });
@@ -201,20 +222,29 @@ export const {
   setEndDateAction,
 } = appointmentSlice.actions;
 
-export const appointmentsStateSlice = (state: {appointments : IState}) =>
+export const appointmentsStateSlice = (state: { appointments: IState }) =>
   state.appointments.appointmentsState;
 
-export const isFilteredSlice = (state: {appointments : IState}) => state.appointments.isFiltered;
+export const isFilteredSlice = (state: { appointments: IState }) =>
+  state.appointments.isFiltered;
 
-export const sortFieldSlice = (state: {appointments : IState}) => state.appointments.sortField;
-export const startDateSlice = (state: {appointments : IState}) => state.appointments.startDate;
-export const endDateSlice = (state: {appointments : IState}) => state.appointments.endDate;
+export const sortFieldSlice = (state: { appointments: IState }) =>
+  state.appointments.sortField;
+export const startDateSlice = (state: { appointments: IState }) =>
+  state.appointments.startDate;
+export const endDateSlice = (state: { appointments: IState }) =>
+  state.appointments.endDate;
 
-export const doctorsStateSlice = (state: {appointments : IState}) => state.appointments.doctors;
+export const doctorsStateSlice = (state: { appointments: IState }) =>
+  state.appointments.doctors;
 
-export const listOfFieldsSortSlice = (state: {appointments : IState}) =>
+export const listOfFieldsSortSlice = (state: { appointments: IState }) =>
   state.appointments.listOfFieldsSort;
 
-export const orderListSortSlice = (state: {appointments : IState}) => state.appointments.orderListSort;
+export const orderListSortSlice = (state: { appointments: IState }) =>
+  state.appointments.orderListSort;
+
+export const isLoadingSlice = (state: { appointments: IState }) =>
+  state.appointments.isLoading;
 
 export default appointmentSlice.reducer;

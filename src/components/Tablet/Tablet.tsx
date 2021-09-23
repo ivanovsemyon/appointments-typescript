@@ -1,28 +1,32 @@
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
   getAppointments,
   appointmentsStateSlice,
   doctorsStateSlice,
+  isLoadingSlice,
 } from "../../redux/appointmentSlice";
 
 import TabletItem from "../TabletItem/TabletItem";
 
+import { Spin } from "antd";
+
 import style from "./Tablet.module.scss";
 
 interface IPropsTablet {
-  isLogin: boolean
+  isLogin: boolean;
 }
 
 const Tablet = ({ isLogin }: IPropsTablet) => {
   const dispatch = useDispatch();
   const appointments = useSelector(appointmentsStateSlice);
   const doctors = useSelector(doctorsStateSlice);
+  const isLoading = useSelector(isLoadingSlice);
 
   useEffect(() => {
     if (
-        isLogin &&
+      isLogin &&
       !!localStorage.getItem("token") &&
       !!localStorage.getItem("user")
     ) {
@@ -39,16 +43,16 @@ const Tablet = ({ isLogin }: IPropsTablet) => {
           Жалобы:
         </h3>
       </div>
-      <div className={style.tablet_main}>
-        {!!appointments?.length &&
-          appointments.map((item) => (
-            <TabletItem
-              key={item._id}
-              item={item}
-              doctors={doctors}
-            />
-          ))}
-      </div>
+      {isLoading ? (
+        <Spin className={style.spin} size={"large"} />
+      ) : (
+        <div className={style.tablet_main}>
+          {!!appointments?.length &&
+            appointments.map((item) => (
+              <TabletItem key={item._id} item={item} doctors={doctors} />
+            ))}
+        </div>
+      )}
     </div>
   );
 };

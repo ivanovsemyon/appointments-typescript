@@ -27,7 +27,14 @@ const AddingNewAppointment = () => {
 
   const addNewAppointment = useCallback(() => {
     if (name && doctor && date && complaint) {
-      dispatch(addAppointment({ name, doctor, date, complaint }));
+      dispatch(
+        addAppointment({
+          name: name.trim(),
+          doctor: doctor.trim(),
+          date: date.trim(),
+          complaint: complaint.trim(),
+        })
+      );
       setName("");
       setDoctor("");
       setComplaint("");

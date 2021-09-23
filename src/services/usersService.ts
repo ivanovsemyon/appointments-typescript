@@ -1,4 +1,4 @@
-import {Dispatch, SetStateAction} from "react";
+import { Dispatch, SetStateAction } from "react";
 import axios from "axios";
 import baseRoute from "../utils/baseRoute";
 
@@ -10,8 +10,8 @@ export const loginUser = (
 ) => {
   axios
     .post(baseRoute("loginUser"), {
-      login: login,
-      password: password,
+      login: login.trim(),
+      password: password.trim(),
     })
     .then((result) => {
       localStorage.setItem("token", result.data.token);
@@ -40,9 +40,9 @@ export const registrationUser = (
 ) => {
   axios
     .post(baseRoute("registrationUser"), {
-      login: login,
-      password: password,
-      repeatPassword: repeatPassword,
+      login: login.trim(),
+      password: password.trim(),
+      repeatPassword: repeatPassword.trim(),
     })
     .then((result) => {
       localStorage.setItem("token", result.data.token);

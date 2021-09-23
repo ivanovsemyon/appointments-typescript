@@ -1,7 +1,7 @@
 .tablet {
   width: 90%;
   margin: 24px auto;
-
+  text-align: center;
   .name {
     display: flex;
     align-items: center;
@@ -56,6 +56,9 @@
         font-size: 16px;
       }
     }
+  }
+  .spin {
+    margin-top: 20px;
   }
   .tablet_main {
     background: #ffffff;

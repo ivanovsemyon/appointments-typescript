@@ -38,7 +38,7 @@ const SortMenu = () => {
       <Select
         className="sort_wrapper_select"
         suffixIcon={<img src={arrow} alt="arrow-down" />}
-        onChange={(value) => {
+        onChange={(value: string) => {
           dispatch(setSortFieldAction(value));
           selectFieldSortBy();
         }}
@@ -54,9 +54,9 @@ const SortMenu = () => {
           <p className={style.sort_wrapper_text}>Направление:</p>
           <Select
             className="sort_wrapper_select"
-            defaultValue="По возрастанию"
+            defaultValue="asc"
             suffixIcon={<img src={arrow} alt="arrow-down" />}
-            onChange={(value) => {
+            onChange={(value: "asc" | "desc") => {
               dispatch(setOrderBySortAction(value));
               selectFieldSortBy();
             }}

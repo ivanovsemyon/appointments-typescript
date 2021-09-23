@@ -1,17 +1,24 @@
 import axios from "axios";
 import baseRoute from "../utils/baseRoute";
+import { IAppointment } from "../interfaces/appointmentInterfaces";
 
-export const getAllAppointments = () => {
+export const getAllAppointments = (rejectWithValue: any) => {
   try {
     return axios
       .get(baseRoute("getAllAppointments"))
-      .then((result) => result.data);
-  } catch (e) {
-    console.log(e, "Ошибка");
+      .then((result): Array<IAppointment> => result.data);
+  } catch (e: any) {
+    return rejectWithValue(e);
   }
 };
 
-export const createAppointment = ( name: string, doctor: string, date: string, complaint: string) => {
+export const createAppointment = (
+  name: string,
+  doctor: string,
+  date: string,
+  complaint: string,
+  rejectWithValue: any
+) => {
   try {
     return axios
       .post(baseRoute("createAppointment"), {
@@ -20,15 +27,22 @@ export const createAppointment = ( name: string, doctor: string, date: string, c
         date: date,
         complaint: complaint,
       })
-      .then((result) => {
+      .then((result: { data: IAppointment }) => {
         return result.data;
       });
-  } catch (e) {
-    console.log(e, "Ошибка");
+  } catch (e: any) {
+    return rejectWithValue(e);
   }
 };
 
-export const editAppointment = ( _id: string, name: string, doctor: string, date: string, complaint: string ) => {
+export const editAppointment = (
+  _id: string,
+  name: string,
+  doctor: string,
+  date: string,
+  complaint: string,
+  rejectWithValue: any
+) => {
   try {
     return axios
       .post(baseRoute("editAppointment"), {
@@ -38,18 +52,16 @@ export const editAppointment = ( _id: string, name: string, doctor: string, date
         date: date,
         complaint: complaint,
       })
-      .then((result) => result.data);
-  } catch (e) {
-    console.log(e, "Ошибка");
+      .then((result: { data: IAppointment }) => result.data);
+  } catch (e: any) {
+    return rejectWithValue(e);
   }
 };
 
-export const deleteAppointment = (id: string) => {
+export const deleteAppointment = async (id: string, rejectWithValue: any) => {
   try {
-    return axios
-      .delete(baseRoute(`deleteAppointments?id=${id}`))
-      .then((result) => result.data);
-  } catch (e) {
-    console.log(e, "Ошибка");
+    await axios.delete(baseRoute(`deleteAppointments?id=${id}`));
+  } catch (e: any) {
+    return rejectWithValue(e);
   }
 };
