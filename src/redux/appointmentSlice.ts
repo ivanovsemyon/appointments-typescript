@@ -1,21 +1,21 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { filter, find, inRange, merge, orderBy, remove, uniqBy } from "lodash";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { filter, find, inRange, merge, orderBy, remove, uniqBy } from 'lodash';
 
-import { IAppointment, IState } from "../interfaces/appointmentInterfaces";
+import { IAppointment, IState } from '../interfaces/appointmentInterfaces';
 import {
   createAppointment,
   deleteAppointment,
   editAppointment,
   getAllAppointments,
-} from "../services/appointmentsService";
+} from '../services/appointmentsService';
 
 export const getAppointments = createAsyncThunk(
-  "appointments/getAppointments",
+  'appointments/getAppointments',
   async (_, { rejectWithValue }) => getAllAppointments(rejectWithValue)
 );
 
 export const addAppointment = createAsyncThunk(
-  "appointments/addAppointment",
+  'appointments/addAppointment',
   async (
     {
       name,
@@ -33,12 +33,12 @@ export const addAppointment = createAsyncThunk(
 );
 
 export const removeAppointment = createAsyncThunk(
-  "appointments/removeAppointment",
+  'appointments/removeAppointment',
   (id: string, { rejectWithValue }) => deleteAppointment(id, rejectWithValue)
 );
 
 export const changeAppointment = createAsyncThunk(
-  "appointments/changeAppointment",
+  'appointments/changeAppointment',
   ({ _id, name, doctor, date, complaint }: IAppointment, { rejectWithValue }) =>
     editAppointment(_id, name, doctor, date, complaint, rejectWithValue)
 );
@@ -65,41 +65,41 @@ const filterList = (state: IState) => {
         : state.initialState,
       (o) =>
         inRange(
-          +o.date.split("-").join(""),
-          +state.startDate.split("-").join(""),
-          +state.endDate.split("-").join("") + 1
+          +o.date.split('-').join(''),
+          +state.startDate.split('-').join(''),
+          +state.endDate.split('-').join('') + 1
         )
     );
   }
 };
 
 const appointmentSlice = createSlice({
-  name: "appointments",
+  name: 'appointments',
 
   initialState: {
     appointmentsState: [],
     initialState: [],
-    sortField: "",
-    orderBySort: "asc",
+    sortField: '',
+    orderBySort: 'asc',
     isFiltered: false,
-    startDate: "",
-    endDate: "",
+    startDate: '',
+    endDate: '',
     doctors: [
-      "Иванов Иван Иванович",
-      "Петров Петр Петрович",
-      "Сидров Сидр Сидорович",
-      "Семенов Семен Семенович",
+      'Иванов Иван Иванович',
+      'Петров Петр Петрович',
+      'Сидров Сидр Сидорович',
+      'Семенов Семен Семенович',
     ],
     listOfFieldsSort: [
-      { name: "name", value: "Имя" },
-      { name: "doctor", value: "Врач" },
-      { name: "date", value: "Дата" },
+      { name: 'name', value: 'Имя' },
+      { name: 'doctor', value: 'Врач' },
+      { name: 'date', value: 'Дата' },
 
-      { name: "", value: "Сбросить" },
+      { name: '', value: 'Сбросить' },
     ],
     orderListSort: [
-      { order: "asc", value: "По возрастанию" },
-      { order: "desc", value: "По убыванию" },
+      { order: 'asc', value: 'По возрастанию' },
+      { order: 'desc', value: 'По убыванию' },
     ],
     isLoading: true,
   } as IState,
@@ -109,7 +109,7 @@ const appointmentSlice = createSlice({
       state.sortField = action.payload;
     },
 
-    setOrderBySortAction(state: IState, action: { payload: "asc" | "desc" }) {
+    setOrderBySortAction(state: IState, action: { payload: 'asc' | 'desc' }) {
       state.orderBySort = action.payload;
     },
 
@@ -134,7 +134,7 @@ const appointmentSlice = createSlice({
         );
       } else if (!state.sortField && (!state.startDate || !state.endDate)) {
         state.appointmentsState = state.initialState;
-        state.orderBySort = "asc";
+        state.orderBySort = 'asc';
       }
     },
 
@@ -157,10 +157,10 @@ const appointmentSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(addAppointment.fulfilled, (state: IState, { payload }) => {
-        state.initialState = uniqBy(state.initialState.concat(payload), "_id");
+        state.initialState = uniqBy(state.initialState.concat(payload), '_id');
         state.appointmentsState = uniqBy(
           state.appointmentsState.concat(payload),
-          "_id"
+          '_id'
         );
         if (state.sortField && !state.isFiltered) {
           state.appointmentsState = orderBy(
@@ -186,12 +186,12 @@ const appointmentSlice = createSlice({
       .addCase(changeAppointment.fulfilled, (state, { payload, meta }) => {
         merge(find(state.initialState, { _id: meta.arg._id }), payload[0]);
         merge(find(state.appointmentsState, { _id: meta.arg._id }), payload[0]);
-        if (state.startDate !== "" || state.endDate !== "") {
+        if (state.startDate !== '' || state.endDate !== '') {
           if (
             !inRange(
-              +payload[0].date.split("-").join(""),
-              +state.startDate.split("-").join(""),
-              (+state.endDate.split("-").join("") || Infinity) + 1
+              +payload[0].date.split('-').join(''),
+              +state.startDate.split('-').join(''),
+              (+state.endDate.split('-').join('') || Infinity) + 1
             )
           ) {
             remove(state.appointmentsState, { _id: meta.arg._id });
@@ -229,8 +229,10 @@ export const isFilteredSlice = (state: { appointments: IState }) =>
 
 export const sortFieldSlice = (state: { appointments: IState }) =>
   state.appointments.sortField;
+
 export const startDateSlice = (state: { appointments: IState }) =>
   state.appointments.startDate;
+
 export const endDateSlice = (state: { appointments: IState }) =>
   state.appointments.endDate;
 
