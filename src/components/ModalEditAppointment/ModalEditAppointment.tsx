@@ -6,7 +6,7 @@ import moment from "moment";
 
 import Button from "../Button/Button";
 
-import { changeAppointment } from "../../redux/appointmentSlice";
+import { changeAppointment } from "../../redux/actions";
 import { IAppointment } from "../../interfaces/appointmentInterfaces";
 
 import arrow from "../../icons/Arrow-bottom.svg";

@@ -6,13 +6,11 @@ import { Select } from "antd";
 import {
   appointmentsFilterAction,
   appointmentsSortAction,
-  listOfFieldsSortSlice,
-  orderListSortSlice,
   setFilteredAction,
   setOrderBySortAction,
   setSortFieldAction,
-  sortFieldSlice,
-} from "../../redux/appointmentSlice";
+} from "../../redux/actions";
+import { IState } from "../../interfaces/appointmentInterfaces";
 
 import addFilter from "../../icons/AddFilter.svg";
 import arrow from "../../icons/Arrow-bottom.svg";
@@ -23,9 +21,18 @@ const { Option } = Select;
 
 const SortMenu = () => {
   const dispatch = useDispatch();
-  const sortFieldIsSelected = useSelector(sortFieldSlice);
-  const listOfFieldsSort = useSelector(listOfFieldsSortSlice);
-  const orderListSort = useSelector(orderListSortSlice);
+  const sortFieldIsSelected = useSelector(
+    (state: { appointmentsReducer: IState }) =>
+      state.appointmentsReducer.sortField
+  );
+  const listOfFieldsSort = useSelector(
+    (state: { appointmentsReducer: IState }) =>
+      state.appointmentsReducer.listOfFieldsSort
+  );
+  const orderListSort = useSelector(
+    (state: { appointmentsReducer: IState }) =>
+      state.appointmentsReducer.orderListSort
+  );
 
   const selectFieldSortBy = useCallback(() => {
     dispatch(appointmentsSortAction());

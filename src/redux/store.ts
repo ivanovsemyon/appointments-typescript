@@ -1,17 +1,12 @@
-import {
-  applyMiddleware,
-  combineReducers,
-  configureStore,
-  createStore,
-} from '@reduxjs/toolkit';
-import thunk from 'redux-thunk';
+import { applyMiddleware, combineReducers, compose, createStore } from "redux";
+import thunk from "redux-thunk";
 
-import appointmentSlice from './appointmentSlice';
+import { appointmentsReducer } from "./reducers";
 
-export default configureStore({
-  reducer: {
-    appointments: appointmentSlice,
-  },
-});
+export const composeEnhancers =
+  (window && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
-export const store = createStore(combineReducers(), applyMiddleware(thunk));
+export const store = createStore(
+  combineReducers({ appointmentsReducer }),
+  compose(applyMiddleware(thunk), composeEnhancers())
+);

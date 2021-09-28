@@ -8,13 +8,11 @@ import Button from "../Button/Button";
 import {
   appointmentsFilterAction,
   appointmentsSortAction,
-  endDateSlice,
-  isFilteredSlice,
   setEndDateAction,
   setFilteredAction,
   setStartDateAction,
-  startDateSlice,
-} from "../../redux/appointmentSlice";
+} from "../../redux/actions";
+import { IState } from "../../interfaces/appointmentInterfaces";
 
 import calendar from "../../icons/Calendar.svg";
 import trash from "../../icons/Trash.svg";
@@ -23,9 +21,18 @@ import style from "./FilteringMenu.module.scss";
 
 const FilteringMenu = () => {
   const dispatch = useDispatch();
-  const isFiltered = useSelector(isFilteredSlice);
-  const startDate = useSelector(startDateSlice);
-  const endDate = useSelector(endDateSlice);
+  const isFiltered = useSelector(
+    (state: { appointmentsReducer: IState }) =>
+      state.appointmentsReducer.isFiltered
+  );
+  const startDate = useSelector(
+    (state: { appointmentsReducer: IState }) =>
+      state.appointmentsReducer.startDate
+  );
+  const endDate = useSelector(
+    (state: { appointmentsReducer: IState }) =>
+      state.appointmentsReducer.endDate
+  );
 
   const filterAppointments = useCallback(() => {
     dispatch(appointmentsFilterAction());

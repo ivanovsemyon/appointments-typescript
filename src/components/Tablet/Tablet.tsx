@@ -5,12 +5,8 @@ import { Spin } from "antd";
 
 import TabletItem from "../TabletItem/TabletItem";
 
-import {
-  appointmentsStateSlice,
-  doctorsStateSlice,
-  getAppointments,
-  isLoadingSlice,
-} from "../../redux/appointmentSlice";
+import { getAllAppointments } from "../../redux/actions";
+import { IAppointment, IState } from "../../interfaces/appointmentInterfaces";
 
 import style from "./Tablet.module.scss";
 
@@ -20,9 +16,19 @@ interface IPropsTablet {
 
 const Tablet = ({ isLogin }: IPropsTablet) => {
   const dispatch = useDispatch();
-  const appointments = useSelector(appointmentsStateSlice);
-  const doctors = useSelector(doctorsStateSlice);
-  const isLoading = useSelector(isLoadingSlice);
+
+  const doctors = useSelector(
+    (state: { appointmentsReducer: IState }) =>
+      state.appointmentsReducer.doctors
+  );
+  const isLoading = useSelector(
+    (state: { appointmentsReducer: IState }) =>
+      state.appointmentsReducer.isLoading
+  );
+  const appointments = useSelector(
+    (state: { appointmentsReducer: IState }) =>
+      state.appointmentsReducer.appointmentsState
+  );
 
   useEffect(() => {
     if (
@@ -30,7 +36,7 @@ const Tablet = ({ isLogin }: IPropsTablet) => {
       !!localStorage.getItem("token") &&
       !!localStorage.getItem("user")
     ) {
-      dispatch(getAppointments());
+      dispatch(getAllAppointments());
     }
   }, [isLogin, dispatch]);
 
@@ -49,7 +55,7 @@ const Tablet = ({ isLogin }: IPropsTablet) => {
       ) : (
         <div className={style.tablet_main}>
           {!!appointments?.length &&
-            appointments.map((item) => (
+            appointments.map((item: IAppointment) => (
               <TabletItem key={item._id} item={item} doctors={doctors} />
             ))}
         </div>

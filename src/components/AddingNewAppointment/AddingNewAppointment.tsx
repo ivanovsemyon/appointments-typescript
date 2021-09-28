@@ -5,10 +5,8 @@ import { DatePicker, Select } from "antd";
 
 import Button from "../Button/Button";
 
-import {
-  addAppointment,
-  doctorsStateSlice,
-} from "../../redux/appointmentSlice";
+import { createAppointment } from "../../redux/actions";
+import { IState } from "../../interfaces/appointmentInterfaces";
 
 import arrow from "../../icons/Arrow-bottom.svg";
 import calendar from "../../icons/Calendar.svg";
@@ -24,12 +22,15 @@ const AddingNewAppointment = () => {
   const [complaint, setComplaint] = useState("");
 
   const dispatch = useDispatch();
-  const doctors = useSelector(doctorsStateSlice);
+  const doctors = useSelector(
+    (state: { appointmentsReducer: IState }) =>
+      state.appointmentsReducer.doctors
+  );
 
   const addNewAppointment = useCallback(() => {
     if (name && doctor && date && complaint) {
       dispatch(
-        addAppointment({
+        createAppointment({
           name: name.trim(),
           doctor: doctor.trim(),
           date: date.trim(),
