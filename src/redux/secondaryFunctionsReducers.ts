@@ -1,5 +1,5 @@
+import { filter, inRange, orderBy } from "lodash";
 import { IAppointment, IState } from "../interfaces/appointmentInterfaces";
-import { filter, find, inRange, merge, orderBy, remove } from "lodash";
 
 export const sortList = (state: IState) => {
   if (state.sortField) {
@@ -61,21 +61,17 @@ export const filterList = (state: IState) => {
   }
 };
 
-export const addNewAppointment = (state: IState, payload: IAppointment) => {
+export const addNewAppointment = (
+  state: IState,
+  payload: Array<IAppointment>
+) => {
   const result = {
     ...state,
-    initialState: state.initialState.concat(payload),
-    appointmentsState: state.appointmentsState.concat(payload),
+    initialState: payload,
+    appointmentsState: payload,
   };
   if (state.sortField && !state.isFiltered) {
-    return {
-      ...result,
-      appointmentsState: orderBy(
-        result.appointmentsState,
-        result.sortField,
-        result.orderBySort
-      ),
-    };
+    return sortList(result);
   } else if (state.isFiltered) {
     return filterList(result);
   }
@@ -85,43 +81,30 @@ export const addNewAppointment = (state: IState, payload: IAppointment) => {
 export const editAppointment = (state: IState, action: any) => {
   const result = {
     ...state,
+    initialState: action.payload,
+    appointmentsState: action.payload,
   };
-  merge(
-    find(result.initialState, { _id: action.payload[0]._id }),
-    action.payload[0]
-  );
-  merge(
-    find(result.appointmentsState, { _id: action.payload[0]._id }),
-    action.payload[0]
-  );
-  if (state.startDate !== "" || state.endDate !== "") {
-    if (
-      !inRange(
-        +action.payload[0].date.split("-").join(""),
-        +state.startDate.split("-").join(""),
-        (+state.endDate.split("-").join("") || Infinity) + 1
-      )
-    ) {
-      remove(result.appointmentsState, { _id: action.payload[0]._id });
-    }
-  }
-  if (state.sortField) {
-    result.appointmentsState = orderBy(
-      result.appointmentsState,
-      result.sortField,
-      result.orderBySort
-    );
+  if (state.sortField && !state.isFiltered) {
+    return sortList(result);
+  } else if (state.isFiltered) {
+    return filterList(result);
   }
   return result;
 };
 
-export const deleteAppointment = (state: IState, payload: string) => {
-  return {
+export const deleteAppointment = (
+  state: IState,
+  payload: Array<IAppointment>
+) => {
+  const result = {
     ...state,
-    initialState: filter(state.initialState, (o) => o._id !== payload),
-    appointmentsState: filter(
-      state.appointmentsState,
-      (o) => o._id !== payload
-    ),
+    initialState: payload,
+    appointmentsState: payload,
   };
+  if (state.sortField && !state.isFiltered) {
+    return sortList(result);
+  } else if (state.isFiltered) {
+    return filterList(result);
+  }
+  return result;
 };

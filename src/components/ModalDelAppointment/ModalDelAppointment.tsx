@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 
 import Button from "../Button/Button";
 
-import { removeAppointment } from "../../redux/actions";
+import { removeAppointment } from "../../services/appointmentsService";
 
 import style from "./ModalDelAppointment.module.scss";
 

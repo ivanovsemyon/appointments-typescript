@@ -11,8 +11,6 @@ import {
   SET_SORT_FIELD,
   SET_START_DATE,
 } from "./types";
-import axios from "axios";
-import baseRoute from "../utils/baseRoute";
 import { IAppointment } from "../interfaces/appointmentInterfaces";
 
 export const setSortFieldAction = (sortField: string) => {
@@ -56,16 +54,6 @@ export const appointmentsFilterAction = () => {
   };
 };
 
-export const getAllAppointments = () => {
-  return (dispatch: any) => {
-    axios
-      .get(baseRoute("getAllAppointments"))
-      .then(
-        (result): Array<IAppointment> => dispatch(getAppointments(result.data))
-      );
-  };
-};
-
 export const getAppointments = (appointments: Array<IAppointment>) => {
   return {
     type: GET_APPOINTMENTS,
@@ -73,63 +61,10 @@ export const getAppointments = (appointments: Array<IAppointment>) => {
   };
 };
 
-export const createAppointment = ({
-  name,
-  doctor,
-  date,
-  complaint,
-}: {
-  name: string;
-  doctor: string;
-  date: string;
-  complaint: string;
-}) => {
-  return (dispatch: any) => {
-    axios
-      .post(baseRoute("createAppointment"), {
-        name: name,
-        doctor: doctor,
-        date: date,
-        complaint: complaint,
-      })
-      .then((result: { data: IAppointment }) => {
-        dispatch(addAppointment(result.data));
-      });
-  };
-};
-
-export const addAppointment = (newAppointment: IAppointment) => {
+export const addAppointment = (newAppointments: Array<IAppointment>) => {
   return {
     type: ADD_APPOINTMENTS,
-    payload: newAppointment,
-  };
-};
-
-export const changeAppointment = ({
-  _id,
-  name,
-  doctor,
-  date,
-  complaint,
-}: {
-  _id: string;
-  name: string;
-  doctor: string;
-  date: string;
-  complaint: string;
-}) => {
-  return (dispatch: any) => {
-    axios
-      .post(baseRoute("editAppointment"), {
-        _id: _id,
-        name: name,
-        doctor: doctor,
-        date: date,
-        complaint: complaint,
-      })
-      .then((result: { data: IAppointment }) =>
-        dispatch(editAppointmentAction(result.data))
-      );
+    payload: newAppointments,
   };
 };
 
@@ -140,17 +75,9 @@ export const editAppointmentAction = (editedAppointment: IAppointment) => {
   };
 };
 
-export const removeAppointment = (id: string) => {
-  return (dispatch: any) => {
-    axios.delete(baseRoute(`deleteAppointments?id=${id}`)).then((res) => {
-      dispatch(deleteAppointment(id));
-    });
-  };
-};
-
-export const deleteAppointment = (id: string) => {
+export const deleteAppointment = (result: Array<IAppointment>) => {
   return {
     type: DELETE_APPOINTMENTS,
-    payload: id,
+    payload: result,
   };
 };

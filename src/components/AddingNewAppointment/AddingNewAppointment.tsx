@@ -5,7 +5,7 @@ import { DatePicker, Select } from "antd";
 
 import Button from "../Button/Button";
 
-import { createAppointment } from "../../redux/actions";
+import { createAppointment } from "../../services/appointmentsService";
 import { IState } from "../../interfaces/appointmentInterfaces";
 
 import arrow from "../../icons/Arrow-bottom.svg";

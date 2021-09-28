@@ -5,7 +5,7 @@ import { Spin } from "antd";
 
 import TabletItem from "../TabletItem/TabletItem";
 
-import { getAllAppointments } from "../../redux/actions";
+import { getAllAppointments } from "../../services/appointmentsService";
 import { IAppointment, IState } from "../../interfaces/appointmentInterfaces";
 
 import style from "./Tablet.module.scss";
