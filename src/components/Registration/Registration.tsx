@@ -1,5 +1,11 @@
-import { Dispatch, SetStateAction, useCallback, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
+import { Link } from "react-router-dom";
 
 import Header from "../Header/Header";
 
@@ -9,12 +15,15 @@ import { passwordRegex } from "../../utils/registrationUtils";
 import domain from "../../icons/Domain.svg";
 
 import style from "./Regstration.module.scss";
+import { useDispatch } from "react-redux";
+import { push } from "connected-react-router";
 
 interface IPropsRegistration {
+  isLogin: boolean;
   setIsLogin: Dispatch<SetStateAction<boolean>>;
 }
 
-const Registration = ({ setIsLogin }: IPropsRegistration) => {
+const Registration = ({ isLogin, setIsLogin }: IPropsRegistration) => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -23,8 +32,6 @@ const Registration = ({ setIsLogin }: IPropsRegistration) => {
     password: "",
     repeatPassword: "",
   });
-
-  const history = useHistory();
 
   const validPassword = passwordRegex.test(password);
 
@@ -54,13 +61,18 @@ const Registration = ({ setIsLogin }: IPropsRegistration) => {
           repeatPassword,
           setIsLogin,
           setError,
-          error,
-          history
+          error
         );
       }
     },
-    [login, password, repeatPassword, error, history, setIsLogin, validPassword]
+    [login, password, repeatPassword, error, setIsLogin, validPassword]
   );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    isLogin && dispatch(push("/general"));
+  }, [isLogin, dispatch]);
 
   return (
     <>

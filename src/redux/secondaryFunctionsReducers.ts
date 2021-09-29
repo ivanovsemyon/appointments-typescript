@@ -1,25 +1,6 @@
 import { filter, inRange, orderBy } from "lodash";
 import { IAppointment, IState } from "../interfaces/appointmentInterfaces";
 
-export const sortList = (state: IState) => {
-  if (state.sortField) {
-    return {
-      ...state,
-      appointmentsState: orderBy(
-        state.isFiltered ? state.appointmentsState : state.initialState,
-        state.sortField,
-        state.orderBySort
-      ),
-    };
-  } else if (!state.sortField && (!state.startDate || !state.endDate)) {
-    return {
-      ...state,
-      appointmentsState: state.initialState,
-      orderBySort: "asc",
-    };
-  }
-};
-
 export const filterList = (state: IState) => {
   if (state.startDate && !state.endDate) {
     return {
@@ -58,6 +39,27 @@ export const filterList = (state: IState) => {
     };
   } else {
     return state;
+  }
+};
+
+export const sortList = (state: IState) => {
+  if (state.sortField) {
+    return {
+      ...state,
+      appointmentsState: orderBy(
+        state.isFiltered ? state.appointmentsState : state.initialState,
+        state.sortField,
+        state.orderBySort
+      ),
+    };
+  } else if (!state.sortField && state.startDate && state.endDate) {
+    return filterList(state);
+  } else {
+    return {
+      ...state,
+      appointmentsState: state.initialState,
+      orderBySort: "asc",
+    };
   }
 };
 

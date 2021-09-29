@@ -77,7 +77,7 @@ export const appointmentsReducer = (
       return editAppointment(state, action);
 
     case DELETE_APPOINTMENTS:
-      return { ...state, ...deleteAppointment(state, action.payload) };
+      return deleteAppointment(state, action.payload);
 
     default:
       return state;

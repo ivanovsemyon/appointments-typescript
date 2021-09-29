@@ -1,15 +1,16 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
+import { push } from "connected-react-router";
 import { useDispatch, useSelector } from "react-redux";
-
-import { Select } from "antd";
-
 import {
-  appointmentsFilterAction,
   appointmentsSortAction,
   setFilteredAction,
   setOrderBySortAction,
   setSortFieldAction,
 } from "../../redux/actions";
+
+import { Select } from "antd";
+import queryString from "query-string";
+
 import { IState } from "../../interfaces/appointmentInterfaces";
 
 import addFilter from "../../icons/AddFilter.svg";
@@ -21,6 +22,7 @@ const { Option } = Select;
 
 const SortMenu = () => {
   const dispatch = useDispatch();
+
   const sortFieldIsSelected = useSelector(
     (state: { appointmentsReducer: IState }) =>
       state.appointmentsReducer.sortField
@@ -33,11 +35,75 @@ const SortMenu = () => {
     (state: { appointmentsReducer: IState }) =>
       state.appointmentsReducer.orderListSort
   );
+  const orderBySort = useSelector(
+    (state: { appointmentsReducer: IState }) =>
+      state.appointmentsReducer.orderBySort
+  );
+  const startDate = useSelector(
+    (state: { appointmentsReducer: IState }) =>
+      state.appointmentsReducer.startDate
+  );
+  const endDate = useSelector(
+    (state: { appointmentsReducer: IState }) =>
+      state.appointmentsReducer.endDate
+  );
 
-  const selectFieldSortBy = useCallback(() => {
-    dispatch(appointmentsSortAction());
-    dispatch(appointmentsFilterAction());
-  }, [dispatch]);
+  const history = useSelector(
+    (state: { router: any }) => state.router.location
+  );
+
+  useEffect(() => {
+    if (history.query.sortField) {
+      dispatch(setSortFieldAction(history.query.sortField));
+      dispatch(setOrderBySortAction(history.query.orderBySort));
+      dispatch(appointmentsSortAction());
+    }
+  }, [history, dispatch]);
+
+  const selectFieldSortBy = useCallback(
+    (value) => {
+      if (value) {
+        dispatch(setSortFieldAction(value));
+        dispatch(appointmentsSortAction());
+        const search: any = {
+          sortField: value,
+          orderBySort,
+        };
+        if (startDate) search.startDate = startDate;
+        if (endDate) search.endDate = endDate;
+        dispatch(
+          push({ pathname: "/general", search: queryString.stringify(search) })
+        );
+      } else {
+        dispatch(setSortFieldAction(value));
+        dispatch(appointmentsSortAction());
+        const search: any = {};
+        if (startDate) search.startDate = startDate;
+        if (endDate) search.endDate = endDate;
+        dispatch(
+          push({ pathname: "/general", search: queryString.stringify(search) })
+        );
+      }
+    },
+    [dispatch, orderBySort, startDate, endDate]
+  );
+
+  const selectOrderBySort = useCallback(
+    (value) => {
+      dispatch(setOrderBySortAction(value));
+      dispatch(appointmentsSortAction());
+      const search: any = {
+        sortField: sortFieldIsSelected,
+        orderBySort: value,
+      };
+      if (startDate) search.startDate = startDate;
+      if (endDate) search.endDate = endDate;
+      dispatch(
+        push({ pathname: "/general", search: queryString.stringify(search) })
+      );
+    },
+    [dispatch, sortFieldIsSelected, startDate, endDate]
+  );
 
   return (
     <div className={style.sort_wrapper}>
@@ -46,8 +112,7 @@ const SortMenu = () => {
         className="sort_wrapper_select"
         suffixIcon={<img src={arrow} alt="arrow-down" />}
         onChange={(value: string) => {
-          dispatch(setSortFieldAction(value));
-          selectFieldSortBy();
+          selectFieldSortBy(value);
         }}
       >
         {listOfFieldsSort.map((item, index) => (
@@ -64,8 +129,7 @@ const SortMenu = () => {
             defaultValue="asc"
             suffixIcon={<img src={arrow} alt="arrow-down" />}
             onChange={(value: "asc" | "desc") => {
-              dispatch(setOrderBySortAction(value));
-              selectFieldSortBy();
+              selectOrderBySort(value);
             }}
           >
             {orderListSort.map((item, index) => (

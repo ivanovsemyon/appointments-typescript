@@ -9,7 +9,7 @@ interface IPropsButton {
   fontSize?: string;
   margin?: string;
   disabled?: boolean;
-  onClick?: any;
+  onClick?: () => void;
 }
 
 const Button = ({

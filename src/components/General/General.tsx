@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction, useEffect } from "react";
-import { Redirect } from "react-router-dom";
 
 import AddingNewAppointment from "../AddingNewAppointment/AddingNewAppointment";
 import FilteringMenu from "../FilteringMenu/FilteringMenu";
@@ -10,6 +9,8 @@ import Tablet from "../Tablet/Tablet";
 import { tokenVerify } from "../../services/usersService";
 
 import style from "./General.module.scss";
+import { useDispatch } from "react-redux";
+import { push } from "connected-react-router";
 
 interface IPropsGeneral {
   isLogin: boolean;
@@ -17,6 +18,8 @@ interface IPropsGeneral {
 }
 
 const General = ({ isLogin, setIsLogin }: IPropsGeneral) => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     if (!!localStorage.getItem("token") && !!localStorage.getItem("user")) {
       tokenVerify(setIsLogin);
@@ -25,9 +28,12 @@ const General = ({ isLogin, setIsLogin }: IPropsGeneral) => {
     }
   }, [setIsLogin]);
 
+  useEffect(() => {
+    !isLogin && dispatch(push("/login"));
+  }, [isLogin, dispatch]);
+
   return (
     <>
-      {!isLogin && <Redirect to="/login" />}
       <Header title="Приемы" isRenderLogout />
       <main className={style.general_appointments}>
         <AddingNewAppointment />

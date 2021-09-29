@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import General from "./components/General/General";
 import Login from "./components/Login/Login";
@@ -12,13 +12,12 @@ const App = () => {
 
   return (
     <div className="main_container">
-      <Redirect from="" to="/general" />
       <Switch>
         <Route path="/register">
-          <Registration setIsLogin={setIsLogin} />
+          <Registration isLogin={isLogin} setIsLogin={setIsLogin} />
         </Route>
         <Route path="/login">
-          <Login setIsLogin={setIsLogin} />
+          <Login isLogin={isLogin} setIsLogin={setIsLogin} />
         </Route>
         <Route path="/general">
           <General isLogin={isLogin} setIsLogin={setIsLogin} />

@@ -1,5 +1,11 @@
-import { Dispatch, SetStateAction, useCallback, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
+import { Link } from "react-router-dom";
 
 import Header from "../Header/Header";
 
@@ -8,26 +14,33 @@ import { loginUser } from "../../services/usersService";
 import domain from "../../icons/Domain.svg";
 
 import style from "./Login.module.scss";
+import { useDispatch } from "react-redux";
+import { push } from "connected-react-router";
 
 interface IPropsLogin {
+  isLogin: boolean;
   setIsLogin: Dispatch<SetStateAction<boolean>>;
 }
 
-const Login = ({ setIsLogin }: IPropsLogin) => {
+const Login = ({ isLogin, setIsLogin }: IPropsLogin) => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
-
-  const history = useHistory();
 
   const onLogin = useCallback(
     (e) => {
       e.preventDefault();
       if (login && password) {
-        loginUser(login, password, setIsLogin, history);
+        loginUser(login, password, setIsLogin);
       }
     },
-    [login, password, setIsLogin, history]
+    [login, password, setIsLogin]
   );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    isLogin && dispatch(push("/general"));
+  }, [isLogin, dispatch]);
 
   return (
     <>

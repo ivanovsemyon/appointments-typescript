@@ -5,8 +5,7 @@ import baseRoute from "../utils/baseRoute";
 export const loginUser = (
   login: string,
   password: string,
-  setIsLogin: Dispatch<SetStateAction<boolean>>,
-  history: any
+  setIsLogin: Dispatch<SetStateAction<boolean>>
 ) => {
   axios
     .post(baseRoute("loginUser"), {
@@ -17,7 +16,6 @@ export const loginUser = (
       localStorage.setItem("token", result.data.token);
       localStorage.setItem("user", login);
       setIsLogin(true);
-      history.push("/general");
     });
 };
 
@@ -35,8 +33,7 @@ export const registrationUser = (
         }) => { password: string; repeatPassword: string; login: string })
       | { password: string; repeatPassword: string; login: string }
   ) => void,
-  error: { password: string; repeatPassword: string; login: string },
-  history: any
+  error: { password: string; repeatPassword: string; login: string }
 ) => {
   axios
     .post(baseRoute("registrationUser"), {
@@ -48,7 +45,6 @@ export const registrationUser = (
       localStorage.setItem("token", result.data.token);
       localStorage.setItem("user", login);
       setIsLogin(true);
-      history.push("/general");
     })
     .catch((errorBackend) => {
       if (errorBackend.response.data.login) {
