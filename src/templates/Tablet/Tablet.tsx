@@ -5,8 +5,8 @@ import { Spin } from "antd";
 
 import TabletItem from "../TabletItem";
 
-import { getAllAppointments } from "../../services/appointmentsService";
-import { IAppointment, IState } from "../../interfaces/appointmentInterfaces";
+import { getAllAppointments } from "utils/services/appointmentsService";
+import { IAppointment, IState } from "utils/interfaces/appointmentInterfaces";
 
 import style from "./Tablet.module.scss";
 

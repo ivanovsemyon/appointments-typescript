@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { DatePicker, Select } from "antd";
 
-import Button from "../Button/Button";
+import Button from "common/Button";
 
-import { createAppointment } from "../../services/appointmentsService";
-import { IState } from "../../interfaces/appointmentInterfaces";
+import { createAppointment } from "utils/services/appointmentsService";
+import { IState } from "utils/interfaces/appointmentInterfaces";
 
-import arrow from "../../icons/Arrow-bottom.svg";
-import calendar from "../../icons/Calendar.svg";
+import arrow from "assets/icons/Arrow-bottom.svg";
+import calendar from "assets/icons/Calendar.svg";
 
 import style from "./AddingNewAppointment.module.scss";
 
@@ -88,12 +88,9 @@ const AddingNewAppointment = () => {
         />
       </div>
       <Button
-        className={style.general_appointments_button}
         label="Добавить"
-        height="45px"
-        fontSize="18px"
-        margin="0 0 0 12px"
         disabled={!name || !doctor || !date || !complaint}
+        type="outline"
         onClick={addNewAppointment}
       />
     </div>

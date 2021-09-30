@@ -2,9 +2,28 @@
   width: 160px;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 18px;
+  height: 45px;
+
+  &--outline,
+  &--outline-small {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background: #ffffff;
+  }
+
+  &--outline-small {
+    height: 40px;
+  }
+
+  &--primary {
+    height: 20px;
+    background: rgba(197, 233, 255, 0.72);
+  }
+
   &:disabled {
     cursor: not-allowed;
   }
+
   @media (max-width: 1024px) {
     width: 145px;
     font-size: 16px;
