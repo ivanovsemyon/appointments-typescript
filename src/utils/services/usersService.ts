@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import axios from "axios";
-import baseRoute from "../utils/baseRoute";
+import baseRoute from "../baseRoute";
 
 export const loginUser = (
   login: string,

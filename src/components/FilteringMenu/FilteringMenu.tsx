@@ -6,49 +6,42 @@ import {
   appointmentsSortAction,
   setEndDateAction,
   setFilteredAction,
-  setOrderBySortAction,
-  setSortFieldAction,
   setStartDateAction,
 } from "../../redux/actions";
 
 import { DatePicker } from "antd";
 import queryString from "query-string";
 
-import Button from "../Button/Button";
+import Button from "common/Button";
 
-import { IState } from "../../interfaces/appointmentInterfaces";
-
-import calendar from "../../icons/Calendar.svg";
-import trash from "../../icons/Trash.svg";
+import calendar from "assets/icons/Calendar.svg";
+import trash from "assets/icons/Trash.svg";
 
 import style from "./FilteringMenu.module.scss";
+import { applicationState } from "../../redux/store";
+import { searchParams } from "../../utils/interfaces/appointmentInterfaces";
 
 const FilteringMenu = () => {
   const dispatch = useDispatch();
 
   const isFiltered = useSelector(
-    (state: { appointmentsReducer: IState }) =>
-      state.appointmentsReducer.isFiltered
+    (state: applicationState) => state.appointmentsReducer.isFiltered
   );
   const startDate = useSelector(
-    (state: { appointmentsReducer: IState }) =>
-      state.appointmentsReducer.startDate
+    (state: applicationState) => state.appointmentsReducer.startDate
   );
   const endDate = useSelector(
-    (state: { appointmentsReducer: IState }) =>
-      state.appointmentsReducer.endDate
+    (state: applicationState) => state.appointmentsReducer.endDate
   );
   const sortFieldIsSelected = useSelector(
-    (state: { appointmentsReducer: IState }) =>
-      state.appointmentsReducer.sortField
+    (state: applicationState) => state.appointmentsReducer.sortField
   );
   const orderBySort = useSelector(
-    (state: { appointmentsReducer: IState }) =>
-      state.appointmentsReducer.orderBySort
+    (state: applicationState) => state.appointmentsReducer.orderBySort
   );
 
   const history = useSelector(
-    (state: { router: any }) => state.router.location
+    (state: applicationState) => state.router.location
   );
 
   useEffect(() => {
@@ -62,7 +55,7 @@ const FilteringMenu = () => {
 
   const filterAppointments = useCallback(() => {
     dispatch(appointmentsFilterAction());
-    const search: any = {};
+    const search: searchParams = {};
     if (sortFieldIsSelected) search.sortField = sortFieldIsSelected;
     if (sortFieldIsSelected && orderBySort) search.orderBySort = orderBySort;
     if (startDate) search.startDate = startDate;
@@ -77,7 +70,7 @@ const FilteringMenu = () => {
     dispatch(setStartDateAction(""));
     dispatch(setEndDateAction(""));
     dispatch(appointmentsSortAction());
-    const search: any = {};
+    const search: searchParams = {};
     if (sortFieldIsSelected) search.sortField = sortFieldIsSelected;
     if (sortFieldIsSelected && orderBySort) search.orderBySort = orderBySort;
     dispatch(
@@ -113,11 +106,8 @@ const FilteringMenu = () => {
             }}
           />
           <Button
-            className={style.btn_filtered}
             label="Фильтровать"
-            height="40px"
-            fontSize="18px"
-            margin="0 32px 0 16px"
+            type="outline-small"
             disabled={startDate > endDate && endDate !== "" && true}
             onClick={filterAppointments}
           />

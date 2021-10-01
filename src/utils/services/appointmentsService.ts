@@ -1,19 +1,20 @@
 import axios from "axios";
-import baseRoute from "../utils/baseRoute";
+import baseRoute from "../baseRoute";
 import { IAppointment } from "../interfaces/appointmentInterfaces";
 import {
   addAppointment,
   deleteAppointment,
   editAppointmentAction,
   getAppointments,
-} from "../redux/actions";
+} from "../../redux/actions";
+import { AppDispatch } from "../../redux/store";
 
 export const getAllAppointments = () => {
-  return (dispatch: any) => {
+  return (dispatch: AppDispatch) => {
     axios
       .get(baseRoute("getAllAppointments"))
-      .then(
-        (result): Array<IAppointment> => dispatch(getAppointments(result.data))
+      .then((result): { payload: Array<IAppointment>; type: string } =>
+        dispatch(getAppointments(result.data))
       );
   };
 };
@@ -29,7 +30,7 @@ export const createAppointment = ({
   date: string;
   complaint: string;
 }) => {
-  return (dispatch: any) => {
+  return (dispatch: AppDispatch) => {
     axios
       .post(baseRoute("createAppointment"), {
         name: name,
@@ -56,7 +57,7 @@ export const changeAppointment = ({
   date: string;
   complaint: string;
 }) => {
-  return (dispatch: any) => {
+  return (dispatch: AppDispatch) => {
     axios
       .post(baseRoute("editAppointment"), {
         _id: _id,
@@ -65,14 +66,14 @@ export const changeAppointment = ({
         date: date,
         complaint: complaint,
       })
-      .then((result: { data: IAppointment }) =>
+      .then((result: { data: Array<IAppointment> }) =>
         dispatch(editAppointmentAction(result.data))
       );
   };
 };
 
 export const removeAppointment = (id: string) => {
-  return (dispatch: any) => {
+  return (dispatch: AppDispatch) => {
     axios
       .delete(baseRoute(`deleteAppointments?id=${id}`))
       .then((res: { data: Array<IAppointment> }) => {

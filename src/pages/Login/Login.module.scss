@@ -1,4 +1,4 @@
-@import "./src/mixins";
+@import "src/assets/mixins";
 
 .login_content {
   @include authentication-body;

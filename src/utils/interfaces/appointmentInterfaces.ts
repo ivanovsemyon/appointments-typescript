@@ -29,3 +29,10 @@ export interface IState {
   orderListSort: Array<IOrderListSort>;
   isLoading: boolean;
 }
+
+export interface searchParams {
+  sortField?: string;
+  orderBySort?: "asc" | "desc";
+  startDate?: string;
+  endDate?: string;
+}

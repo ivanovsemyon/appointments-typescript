@@ -11,12 +11,13 @@ import {
 import { Select } from "antd";
 import queryString from "query-string";
 
-import { IState } from "../../interfaces/appointmentInterfaces";
+import { searchParams } from "utils/interfaces/appointmentInterfaces";
 
-import addFilter from "../../icons/AddFilter.svg";
-import arrow from "../../icons/Arrow-bottom.svg";
+import addFilter from "assets/icons/AddFilter.svg";
+import arrow from "assets/icons/Arrow-bottom.svg";
 
 import style from "./SortMenu.module.scss";
+import { applicationState } from "../../redux/store";
 
 const { Option } = Select;
 
@@ -24,32 +25,29 @@ const SortMenu = () => {
   const dispatch = useDispatch();
 
   const sortFieldIsSelected = useSelector(
-    (state: { appointmentsReducer: IState }) =>
-      state.appointmentsReducer.sortField
+    (state: applicationState) => state.appointmentsReducer.sortField
   );
   const listOfFieldsSort = useSelector(
-    (state: { appointmentsReducer: IState }) =>
-      state.appointmentsReducer.listOfFieldsSort
+    (state: applicationState) => state.appointmentsReducer.listOfFieldsSort
   );
   const orderListSort = useSelector(
-    (state: { appointmentsReducer: IState }) =>
-      state.appointmentsReducer.orderListSort
+    (state: applicationState) => state.appointmentsReducer.orderListSort
   );
   const orderBySort = useSelector(
-    (state: { appointmentsReducer: IState }) =>
-      state.appointmentsReducer.orderBySort
+    (state: applicationState) => state.appointmentsReducer.orderBySort
   );
   const startDate = useSelector(
-    (state: { appointmentsReducer: IState }) =>
-      state.appointmentsReducer.startDate
+    (state: applicationState) => state.appointmentsReducer.startDate
   );
   const endDate = useSelector(
-    (state: { appointmentsReducer: IState }) =>
-      state.appointmentsReducer.endDate
+    (state: applicationState) => state.appointmentsReducer.endDate
+  );
+  const isFiltered = useSelector(
+    (state: applicationState) => state.appointmentsReducer.isFiltered
   );
 
   const history = useSelector(
-    (state: { router: any }) => state.router.location
+    (state: applicationState) => state.router.location
   );
 
   useEffect(() => {
@@ -65,7 +63,7 @@ const SortMenu = () => {
       if (value) {
         dispatch(setSortFieldAction(value));
         dispatch(appointmentsSortAction());
-        const search: any = {
+        const search: searchParams = {
           sortField: value,
           orderBySort,
         };
@@ -77,7 +75,7 @@ const SortMenu = () => {
       } else {
         dispatch(setSortFieldAction(value));
         dispatch(appointmentsSortAction());
-        const search: any = {};
+        const search: searchParams = {};
         if (startDate) search.startDate = startDate;
         if (endDate) search.endDate = endDate;
         dispatch(
@@ -92,7 +90,7 @@ const SortMenu = () => {
     (value) => {
       dispatch(setOrderBySortAction(value));
       dispatch(appointmentsSortAction());
-      const search: any = {
+      const search: searchParams = {
         sortField: sortFieldIsSelected,
         orderBySort: value,
       };
@@ -140,15 +138,17 @@ const SortMenu = () => {
           </Select>
         </>
       )}
-      <div className={style.add_filter_wrapper}>
-        <p className={style.sort_wrapper_text}>Добавить фильтр по дате:</p>
-        <button
-          className={style.add_filter_btn}
-          onClick={() => dispatch(setFilteredAction(true))}
-        >
-          <img src={addFilter} alt="add-filter" />
-        </button>
-      </div>
+      {!isFiltered && (
+        <div className={style.add_filter_wrapper}>
+          <p className={style.sort_wrapper_text}>Добавить фильтр по дате:</p>
+          <button
+            className={style.add_filter_btn}
+            onClick={() => dispatch(setFilteredAction(true))}
+          >
+            <img src={addFilter} alt="add-filter" />
+          </button>
+        </div>
+      )}
     </div>
   );
 };

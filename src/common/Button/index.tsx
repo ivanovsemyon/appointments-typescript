@@ -1,1 +1,1 @@
-export { default } from "./TabletItem";
+export { default } from "./Button";

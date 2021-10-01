@@ -1,3 +1,4 @@
-const baseRoute = (route: string | number) => `http://localhost:8000/${route}`;
+const baseRoute = (route: string) =>
+  `${process.env.REACT_APP_BASE_URL}${route}`;
 
 export default baseRoute;

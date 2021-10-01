@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Spin } from "antd";
 
-import TabletItem from "../TabletItem";
+import TabletItem from "components/TabletItem";
 
 import { getAllAppointments } from "utils/services/appointmentsService";
 import { IAppointment, IState } from "utils/interfaces/appointmentInterfaces";

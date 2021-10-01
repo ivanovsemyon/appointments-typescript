@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 
-import General from "./components/General/General";
-import Login from "./components/Login/Login";
-import Registration from "./components/Registration/Registration";
+import General from "./pages/General/General";
+import Login from "./pages/Login/Login";
+import Registration from "./pages/Registration/Registration";
 
 import "./App.scss";
 

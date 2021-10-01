@@ -1,12 +1,12 @@
 import { Dispatch, SetStateAction, useEffect } from "react";
 
-import AddingNewAppointment from "../AddingNewAppointment/AddingNewAppointment";
-import FilteringMenu from "../FilteringMenu/FilteringMenu";
-import Header from "../Header/Header";
-import SortMenu from "../SortMenu/SortMenu";
-import Tablet from "../Tablet/Tablet";
+import AddNewAppointment from "components/AddNewAppointment";
+import FilteringMenu from "components/FilteringMenu";
+import Header from "components/Header";
+import SortMenu from "components/SortMenu";
+import Tablet from "templates/Tablet";
 
-import { tokenVerify } from "../../services/usersService";
+import { tokenVerify } from "utils/services/usersService";
 
 import style from "./General.module.scss";
 import { useDispatch } from "react-redux";
@@ -36,7 +36,7 @@ const General = ({ isLogin, setIsLogin }: IPropsGeneral) => {
     <>
       <Header title="Приемы" isRenderLogout />
       <main className={style.general_appointments}>
-        <AddingNewAppointment />
+        <AddNewAppointment />
         <SortMenu />
         <FilteringMenu />
         <Tablet isLogin={isLogin} />

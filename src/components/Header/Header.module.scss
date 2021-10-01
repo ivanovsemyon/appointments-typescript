@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 40px;
   @media (max-width: 767px) {
     justify-content: space-evenly;
   }
@@ -12,7 +13,7 @@
   .header_logo {
     width: 90px;
     height: 72px;
-    margin: 20px 90px 20px 40px;
+    margin: 20px 90px 20px 0;
     @media (max-width: 767px) {
       margin: 10px 45px 10px 20px;
       width: 60px;

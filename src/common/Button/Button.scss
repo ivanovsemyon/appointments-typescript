@@ -3,12 +3,13 @@
   border-radius: 4px;
   cursor: pointer;
   font-size: 18px;
-  height: 45px;
 
   &--outline,
   &--outline-small {
+    height: 45px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     background: #ffffff;
+    font-size: 20px;
   }
 
   &--outline-small {
@@ -16,12 +17,14 @@
   }
 
   &--primary {
-    height: 20px;
+    height: 40px;
     background: rgba(197, 233, 255, 0.72);
+    border: 2px solid rgba(197, 233, 255, 0.72);
   }
 
   &:disabled {
     cursor: not-allowed;
+    opacity: 0.7;
   }
 
   @media (max-width: 1024px) {

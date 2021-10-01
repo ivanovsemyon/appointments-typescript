@@ -1,5 +1,8 @@
 import { filter, inRange, orderBy } from "lodash";
-import { IAppointment, IState } from "../interfaces/appointmentInterfaces";
+import {
+  IAppointment,
+  IState,
+} from "../utils/interfaces/appointmentInterfaces";
 
 export const filterList = (state: IState) => {
   if (state.startDate && !state.endDate) {
@@ -80,11 +83,14 @@ export const addNewAppointment = (
   return result;
 };
 
-export const editAppointment = (state: IState, action: any) => {
+export const editAppointment = (
+  state: IState,
+  payload: Array<IAppointment>
+) => {
   const result = {
     ...state,
-    initialState: action.payload,
-    appointmentsState: action.payload,
+    initialState: payload,
+    appointmentsState: payload,
   };
   if (state.sortField && !state.isFiltered) {
     return sortList(result);

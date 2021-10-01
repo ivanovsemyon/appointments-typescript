@@ -1,4 +1,4 @@
-import { IState } from "../interfaces/appointmentInterfaces";
+import { IState } from "../utils/interfaces/appointmentInterfaces";
 
 export const initialState = {
   appointmentsState: [],

@@ -6,17 +6,17 @@ import {
   useState,
 } from "react";
 import { Link } from "react-router-dom";
+import { push } from "connected-react-router";
+import { useDispatch } from "react-redux";
 
-import Header from "../Header/Header";
+import Header from "components/Header";
 
-import { registrationUser } from "../../services/usersService";
-import { passwordRegex } from "../../utils/registrationUtils";
+import { registrationUser } from "utils/services/usersService";
+import { passwordRegex } from "utils/registrationUtils";
 
-import domain from "../../icons/Domain.svg";
+import domain from "assets/icons/Domain.svg";
 
 import style from "./Regstration.module.scss";
-import { useDispatch } from "react-redux";
-import { push } from "connected-react-router";
 
 interface IPropsRegistration {
   isLogin: boolean;

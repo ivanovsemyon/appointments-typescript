@@ -14,3 +14,7 @@ export const store = createStore(
   combineReducers({ appointmentsReducer, router: connectRouter(history) }),
   compose(applyMiddleware(thunk, routerMiddleware(history)), composeEnhancers())
 );
+
+export type applicationState = ReturnType<typeof store.getState>;
+
+export type AppDispatch = typeof store.dispatch;

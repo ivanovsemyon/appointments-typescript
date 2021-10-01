@@ -4,13 +4,13 @@ import { useDispatch } from "react-redux";
 import { DatePicker, Select } from "antd";
 import moment from "moment";
 
-import Button from "../Button/Button";
+import Button from "common/Button";
 
-import { changeAppointment } from "../../services/appointmentsService";
-import { IAppointment } from "../../interfaces/appointmentInterfaces";
+import { changeAppointment } from "utils/services/appointmentsService";
+import { IAppointment } from "utils/interfaces/appointmentInterfaces";
 
-import arrow from "../../icons/Arrow-bottom.svg";
-import calendar from "../../icons/Calendar.svg";
+import arrow from "assets/icons/Arrow-bottom.svg";
+import calendar from "assets/icons/Calendar.svg";
 
 import style from "./ModalEditAppointment.module.scss";
 
@@ -91,21 +91,10 @@ const ModalEditAppointment = ({
           <div className={style.modal_delete_appointment_btn_wrapper}>
             <Button
               label="Cancel"
-              height="40px"
-              border="2px solid rgba(0, 0, 0, 0.2)"
-              fontSize="18px"
-              margin="0 12px 0 0"
+              type="outline-small"
               onClick={() => setIsEditing(false)}
             />
-            <Button
-              label="Save"
-              height="40px"
-              border="2px solid rgba(197, 233, 255, 0.72)"
-              background="rgba(197, 233, 255, 0.72)"
-              fontSize="18px"
-              margin="0 12px 0 0"
-              onClick={editAppointment}
-            />
+            <Button label="Save" type="primary" onClick={editAppointment} />
           </div>
         </div>
       </div>

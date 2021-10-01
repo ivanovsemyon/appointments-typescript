@@ -11,11 +11,11 @@ import { IState } from "utils/interfaces/appointmentInterfaces";
 import arrow from "assets/icons/Arrow-bottom.svg";
 import calendar from "assets/icons/Calendar.svg";
 
-import style from "./AddingNewAppointment.module.scss";
+import style from "./AddNewAppointment.module.scss";
 
 const { Option } = Select;
 
-const AddingNewAppointment = () => {
+const AddNewAppointment = () => {
   const [name, setName] = useState("");
   const [doctor, setDoctor] = useState("");
   const [date, setDate] = useState("");
@@ -87,14 +87,16 @@ const AddingNewAppointment = () => {
           onChange={(e) => setComplaint(e.target.value)}
         />
       </div>
-      <Button
-        label="Добавить"
-        disabled={!name || !doctor || !date || !complaint}
-        type="outline"
-        onClick={addNewAppointment}
-      />
+      <div className={style.general_appointments_button}>
+        <Button
+          label="Добавить"
+          disabled={!name || !doctor || !date || !complaint}
+          type="outline"
+          onClick={addNewAppointment}
+        />
+      </div>
     </div>
   );
 };
 
-export default AddingNewAppointment;
+export default AddNewAppointment;

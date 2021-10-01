@@ -1,45 +1,24 @@
-import style from "./Button.module.scss";
+import cn from "classnames";
+
+import "./Button.scss";
 
 interface IPropsButton {
-  className?: string;
-  label?: string;
-  height?: string;
-  border?: string;
-  background?: string;
-  fontSize?: string;
-  margin?: string;
+  label: string;
   disabled?: boolean;
-  onClick?: () => void;
+  type: "outline" | "outline-small" | "primary";
+  onClick: () => void;
 }
 
-const Button = ({
-  className,
-  label,
-  height,
-  border = "1px solid rgba(0, 0, 0, 0.2)",
-  background = "#ffffff",
-  fontSize,
-  margin,
-  disabled,
-  onClick,
-}: IPropsButton) => {
-  const styleProps = {
-    height: height,
-    border: border,
-    background: background,
-    fontSize: fontSize,
-    margin: margin,
-  };
+const Button = ({ label, disabled, type, onClick }: IPropsButton) => {
+  const className = cn("button", `button--${type}`, {
+    "button--disabled": disabled,
+  });
 
   return (
-    <button
-      style={styleProps}
-      className={`${style.button} ${className}`}
-      onClick={onClick}
-      disabled={disabled}
-    >
+    <button className={className} onClick={onClick} disabled={disabled}>
       {label}
     </button>
   );
 };
+
 export default Button;

@@ -1,6 +1,4 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Create a .env file in the project root directory and add a base url in REACT_APP_BASE_URL variable
 
 ## Available Scripts
 

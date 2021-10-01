@@ -6,16 +6,16 @@ import {
   useState,
 } from "react";
 import { Link } from "react-router-dom";
+import { push } from "connected-react-router";
+import { useDispatch } from "react-redux";
 
-import Header from "../Header/Header";
+import Header from "components/Header";
 
-import { loginUser } from "../../services/usersService";
+import { loginUser } from "utils/services/usersService";
 
-import domain from "../../icons/Domain.svg";
+import domain from "assets/icons/Domain.svg";
 
 import style from "./Login.module.scss";
-import { useDispatch } from "react-redux";
-import { push } from "connected-react-router";
 
 interface IPropsLogin {
   isLogin: boolean;

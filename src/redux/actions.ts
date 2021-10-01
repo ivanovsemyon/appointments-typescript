@@ -11,7 +11,7 @@ import {
   SET_SORT_FIELD,
   SET_START_DATE,
 } from "./types";
-import { IAppointment } from "../interfaces/appointmentInterfaces";
+import { IAppointment } from "../utils/interfaces/appointmentInterfaces";
 
 export const setSortFieldAction = (sortField: string) => {
   return {
@@ -19,7 +19,7 @@ export const setSortFieldAction = (sortField: string) => {
     payload: sortField,
   };
 };
-export const setOrderBySortAction = (orderBySort: "asc" | "desc") => {
+export const setOrderBySortAction = (orderBySort: string) => {
   return {
     type: SET_ORDER_BY_SORT,
     payload: orderBySort,
@@ -68,7 +68,9 @@ export const addAppointment = (newAppointments: Array<IAppointment>) => {
   };
 };
 
-export const editAppointmentAction = (editedAppointment: IAppointment) => {
+export const editAppointmentAction = (
+  editedAppointment: Array<IAppointment>
+) => {
   return {
     type: EDIT_APPOINTMENTS,
     payload: editedAppointment,

@@ -1,3 +1,4 @@
+import { AnyAction } from "redux";
 import {
   ADD_APPOINTMENTS,
   APPOINTMENTS_FILTER,
@@ -19,11 +20,11 @@ import {
   filterList,
   sortList,
 } from "./secondaryFunctionsReducers";
-import { IState } from "../interfaces/appointmentInterfaces";
+import { IState } from "../utils/interfaces/appointmentInterfaces";
 
 export const appointmentsReducer = (
   state: IState = initialState,
-  action: { type: string; payload: any }
+  action: AnyAction
 ) => {
   switch (action.type) {
     case SET_SORT_FIELD:
@@ -74,7 +75,7 @@ export const appointmentsReducer = (
       return addNewAppointment(state, action.payload);
 
     case EDIT_APPOINTMENTS:
-      return editAppointment(state, action);
+      return editAppointment(state, action.payload);
 
     case DELETE_APPOINTMENTS:
       return deleteAppointment(state, action.payload);
