@@ -88,14 +88,14 @@ const ModalEditAppointment = ({
               onChange={(e) => setComplaint(e.target.value)}
             />
           </div>
-          <div className={style.modal_delete_appointment_btn_wrapper}>
-            <Button
-              label="Cancel"
-              type="outline-small"
-              onClick={() => setIsEditing(false)}
-            />
-            <Button label="Save" type="primary" onClick={editAppointment} />
-          </div>
+        </div>
+        <div className={style.modal_delete_appointment_btn_wrapper}>
+          <Button
+            label="Cancel"
+            type="outline-small"
+            onClick={() => setIsEditing(false)}
+          />
+          <Button label="Save" type="primary" onClick={editAppointment} />
         </div>
       </div>
     </div>
