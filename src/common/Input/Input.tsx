@@ -1,14 +1,22 @@
-const Input = (props: any) => {
+interface input {
+  label: string;
+  className: string;
+  value: string;
+  setName: (e: string) => void;
+  id: string;
+}
+
+const Input = ({ label, className, value, setName, id }: input) => {
   return (
     <>
-      <label htmlFor={props.id}>{props.label}</label>
+      <label htmlFor={id}>{label}</label>
       <input
         type="text"
-        id={props.id}
-        className={props.className}
-        value={props.value}
+        id={id}
+        className={className}
+        value={value}
         onChange={(e) => {
-          props.setName(e.target.value);
+          setName(e.target.value);
         }}
       />
     </>
