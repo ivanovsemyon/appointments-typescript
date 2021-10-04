@@ -8,6 +8,8 @@ import {
   setSortFieldAction,
 } from "../../redux/actions";
 
+import ButtonIcon from "../../common/ButtonIcon/ButtonIcon";
+
 import { Select } from "antd";
 import queryString from "query-string";
 
@@ -141,12 +143,12 @@ const SortMenu = () => {
       {!isFiltered && (
         <div className={style.add_filter_wrapper}>
           <p className={style.sort_wrapper_text}>Добавить фильтр по дате:</p>
-          <button
-            className={style.add_filter_btn}
-            onClick={() => dispatch(setFilteredAction(true))}
-          >
-            <img src={addFilter} alt="add-filter" />
-          </button>
+          <div className={style.iconBtn_wrapper}>
+            <ButtonIcon
+              iconSrc={addFilter}
+              onClick={() => dispatch(setFilteredAction(true))}
+            />
+          </div>
         </div>
       )}
     </div>

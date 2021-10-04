@@ -6,24 +6,19 @@
   gap: 18px;
   width: 90%;
   margin: 27px auto 20px;
+  .add_filter_wrapper {
+    display: flex;
+    gap: 18px;
+    .iconBtn_wrapper {
+      width: 30px;
+      height: 30px;
+    }
+  }
   .sort_wrapper_text {
     margin: 0;
     font-size: 18px;
     @media (max-width: 768px) {
       font-size: 16px;
-    }
-  }
-  .add_filter_wrapper {
-    display: flex;
-    .add_filter_btn {
-      width: 30px;
-      height: 30px;
-      padding: 0;
-      margin-left: 10px;
-      background: none;
-      border: none;
-      outline: none;
-      cursor: pointer;
     }
   }
 }

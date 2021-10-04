@@ -124,26 +124,15 @@
     width: 12%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    gap: 20px;
     @media (max-width: 480px) {
       width: 100%;
       border: 1px solid #000000;
     }
-    .tablet_row_item_button {
-      margin: 0 13px;
-      padding: 0;
-      border: none;
-      background: white;
-      cursor: pointer;
-      @media (max-width: 768px) {
-        margin: 0 8px;
-      }
-      @media (max-width: 480px) {
-        img {
-          margin: 4px 8px;
-          width: 27px;
-          height: 27px;
-        }
-      }
+    .iconBtn_wrapper {
+      width: 18px;
+      height: 18px;
     }
   }
 }

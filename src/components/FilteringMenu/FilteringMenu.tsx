@@ -20,6 +20,7 @@ import trash from "assets/icons/Trash.svg";
 import style from "./FilteringMenu.module.scss";
 import { applicationState } from "../../redux/store";
 import { searchParams } from "../../utils/interfaces/appointmentInterfaces";
+import ButtonIcon from "../../common/ButtonIcon/ButtonIcon";
 
 const FilteringMenu = () => {
   const dispatch = useDispatch();
@@ -111,9 +112,9 @@ const FilteringMenu = () => {
             disabled={startDate > endDate && endDate !== "" && true}
             onClick={filterAppointments}
           />
-          <button className={style.btn_delete_filter} onClick={deleteFilter}>
-            <img src={trash} alt="delete-filter" />
-          </button>
+          <div className={style.iconBtn_wrapper}>
+            <ButtonIcon iconSrc={trash} onClick={deleteFilter} />
+          </div>
         </div>
       )}
     </>

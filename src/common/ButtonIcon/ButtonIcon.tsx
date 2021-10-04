@@ -1,7 +1,15 @@
-const ButtonIcon = (props: any) => {
+import "./Button.scss";
+
+const ButtonIcon = ({
+  iconSrc,
+  onClick,
+}: {
+  iconSrc: string;
+  onClick: () => void;
+}) => {
   return (
-    <button>
-      <img src={props.iconSrc} alt="" />
+    <button className="button-icon" onClick={onClick}>
+      <img src={iconSrc} alt="" />
     </button>
   );
 };

@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 
 import Input from "common/Input";
 import Modal from "common/Modal";
+import ButtonIcon from "../../common/ButtonIcon/ButtonIcon";
 
 import { DatePicker, Select } from "antd";
 import moment from "moment";
@@ -92,18 +93,12 @@ const TabletItem = ({ item, doctors }: ITabletItemProps) => {
         {item.complaint}
       </div>
       <div className={style.tablet_row_item_button_wrapper}>
-        <button
-          className={style.tablet_row_item_button}
-          onClick={showModalDelete}
-        >
-          <img src={trash} alt="trash" />
-        </button>
-        <button
-          className={style.tablet_row_item_button}
-          onClick={showModalEdit}
-        >
-          <img src={pencil} alt="pencil" />
-        </button>
+        <div className={style.iconBtn_wrapper}>
+          <ButtonIcon iconSrc={trash} onClick={showModalDelete} />
+        </div>
+        <div className={style.iconBtn_wrapper}>
+          <ButtonIcon iconSrc={pencil} onClick={showModalEdit} />
+        </div>
       </div>
       {isDeleting && (
         <Modal
