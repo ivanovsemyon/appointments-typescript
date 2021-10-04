@@ -5,7 +5,7 @@ import { createBrowserHistory } from "history";
 
 import { appointmentsReducer } from "./reducers";
 
-export const composeEnhancers =
+const composeEnhancers =
   (window && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
 export const history = createBrowserHistory();

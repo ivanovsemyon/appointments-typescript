@@ -1,4 +1,4 @@
-import { IState } from "../utils/interfaces/appointmentInterfaces";
+import { state } from "../utils/interfaces/appointmentInterfaces";
 
 export const initialState = {
   appointmentsState: [],
@@ -26,4 +26,4 @@ export const initialState = {
     { order: "desc", value: "По убыванию" },
   ],
   isLoading: true,
-} as IState;
+} as state;

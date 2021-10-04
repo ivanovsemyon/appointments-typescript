@@ -1,6 +1,6 @@
 import axios from "axios";
 import baseRoute from "../baseRoute";
-import { IAppointment } from "../interfaces/appointmentInterfaces";
+import { appointment } from "../interfaces/appointmentInterfaces";
 import {
   addAppointment,
   deleteAppointment,
@@ -16,7 +16,7 @@ export class API {
     return (dispatch: AppDispatch) => {
       axios
         .get(baseRoute("getAllAppointments"))
-        .then((result): { payload: Array<IAppointment>; type: string } =>
+        .then((result): { payload: Array<appointment>; type: string } =>
           dispatch(getAppointments(result.data))
         );
     };
@@ -41,7 +41,7 @@ export class API {
           date: date,
           complaint: complaint,
         })
-        .then((result: { data: Array<IAppointment> }) => {
+        .then((result: { data: Array<appointment> }) => {
           dispatch(addAppointment(result.data));
         });
     };
@@ -69,7 +69,7 @@ export class API {
           date: date,
           complaint: complaint,
         })
-        .then((result: { data: Array<IAppointment> }) =>
+        .then((result: { data: Array<appointment> }) =>
           dispatch(editAppointmentAction(result.data))
         );
     };
@@ -79,7 +79,7 @@ export class API {
     return (dispatch: AppDispatch) => {
       axios
         .delete(baseRoute(`deleteAppointments?id=${id}`))
-        .then((res: { data: Array<IAppointment> }) => {
+        .then((res: { data: Array<appointment> }) => {
           dispatch(deleteAppointment(res.data));
         });
     };
@@ -90,7 +90,7 @@ export const getAllAppointments = () => {
   return (dispatch: AppDispatch) => {
     axios
       .get(baseRoute("getAllAppointments"))
-      .then((result): { payload: Array<IAppointment>; type: string } =>
+      .then((result): { payload: Array<appointment>; type: string } =>
         dispatch(getAppointments(result.data))
       );
   };
@@ -115,7 +115,7 @@ export const createAppointment = ({
         date: date,
         complaint: complaint,
       })
-      .then((result: { data: Array<IAppointment> }) => {
+      .then((result: { data: Array<appointment> }) => {
         dispatch(addAppointment(result.data));
       });
   };
@@ -143,7 +143,7 @@ export const changeAppointment = ({
         date: date,
         complaint: complaint,
       })
-      .then((result: { data: Array<IAppointment> }) =>
+      .then((result: { data: Array<appointment> }) =>
         dispatch(editAppointmentAction(result.data))
       );
   };
@@ -153,7 +153,7 @@ export const removeAppointment = (id: string) => {
   return (dispatch: AppDispatch) => {
     axios
       .delete(baseRoute(`deleteAppointments?id=${id}`))
-      .then((res: { data: Array<IAppointment> }) => {
+      .then((res: { data: Array<appointment> }) => {
         dispatch(deleteAppointment(res.data));
       });
   };

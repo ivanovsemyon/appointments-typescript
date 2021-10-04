@@ -1,4 +1,4 @@
-export interface IAppointment {
+export interface appointment {
   _id: string;
   name: string;
   doctor: string;
@@ -6,27 +6,27 @@ export interface IAppointment {
   complaint: string;
 }
 
-export interface IListOfFieldsSort {
+export interface listOfFieldsSort {
   name: string;
   value: string;
 }
 
-export interface IOrderListSort {
+export interface orderListSort {
   order: string;
   value: string;
 }
 
-export interface IState {
-  appointmentsState: Array<IAppointment>;
-  initialState: Array<IAppointment>;
+export interface state {
+  appointmentsState: Array<appointment>;
+  initialState: Array<appointment>;
   sortField: string;
   orderBySort: "asc" | "desc";
   isFiltered: boolean;
   startDate: string;
   endDate: string;
   doctors: Array<string>;
-  listOfFieldsSort: Array<IListOfFieldsSort>;
-  orderListSort: Array<IOrderListSort>;
+  listOfFieldsSort: Array<listOfFieldsSort>;
+  orderListSort: Array<orderListSort>;
   isLoading: boolean;
 }
 

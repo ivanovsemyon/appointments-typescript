@@ -1,10 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import axios from "axios";
 import baseRoute from "../baseRoute";
-import {
-  errorPassword,
-  errorRepeatPassword,
-} from "../../pages/Registration/errorConstants";
 
 export const loginUser = (
   login: string,

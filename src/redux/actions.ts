@@ -11,7 +11,7 @@ import {
   SET_SORT_FIELD,
   SET_START_DATE,
 } from "./types";
-import { IAppointment } from "../utils/interfaces/appointmentInterfaces";
+import { appointment } from "../utils/interfaces/appointmentInterfaces";
 
 export const setSortFieldAction = (sortField: string) => {
   return {
@@ -54,14 +54,14 @@ export const appointmentsFilterAction = () => {
   };
 };
 
-export const getAppointments = (appointments: Array<IAppointment>) => {
+export const getAppointments = (appointments: Array<appointment>) => {
   return {
     type: GET_APPOINTMENTS,
     payload: appointments,
   };
 };
 
-export const addAppointment = (newAppointments: Array<IAppointment>) => {
+export const addAppointment = (newAppointments: Array<appointment>) => {
   return {
     type: ADD_APPOINTMENTS,
     payload: newAppointments,
@@ -69,7 +69,7 @@ export const addAppointment = (newAppointments: Array<IAppointment>) => {
 };
 
 export const editAppointmentAction = (
-  editedAppointment: Array<IAppointment>
+  editedAppointment: Array<appointment>
 ) => {
   return {
     type: EDIT_APPOINTMENTS,
@@ -77,7 +77,7 @@ export const editAppointmentAction = (
   };
 };
 
-export const deleteAppointment = (result: Array<IAppointment>) => {
+export const deleteAppointment = (result: Array<appointment>) => {
   return {
     type: DELETE_APPOINTMENTS,
     payload: result,

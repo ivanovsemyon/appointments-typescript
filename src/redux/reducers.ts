@@ -20,10 +20,10 @@ import {
   filterList,
   sortList,
 } from "./secondaryFunctionsReducers";
-import { IState } from "../utils/interfaces/appointmentInterfaces";
+import { state } from "utils/interfaces/appointmentInterfaces";
 
 export const appointmentsReducer = (
-  state: IState = initialState,
+  state: state = initialState,
   action: AnyAction
 ) => {
   switch (action.type) {

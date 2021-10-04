@@ -6,7 +6,7 @@ import { DatePicker, Select } from "antd";
 import Button from "common/Button";
 
 import { createAppointment } from "utils/services/appointmentsService";
-import { IState } from "utils/interfaces/appointmentInterfaces";
+import { state } from "utils/interfaces/appointmentInterfaces";
 
 import arrow from "assets/icons/Arrow-bottom.svg";
 import calendar from "assets/icons/Calendar.svg";
@@ -24,8 +24,7 @@ const AddNewAppointment = () => {
   const dispatch = useDispatch();
 
   const doctors = useSelector(
-    (state: { appointmentsReducer: IState }) =>
-      state.appointmentsReducer.doctors
+    (state: { appointmentsReducer: state }) => state.appointmentsReducer.doctors
   );
 
   const disabledBtn = useMemo(() => {

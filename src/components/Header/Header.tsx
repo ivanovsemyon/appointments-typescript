@@ -7,12 +7,12 @@ import logo from "assets/icons/Logo.svg";
 
 import style from "./Header.module.scss";
 
-interface IPropsHeader {
+interface propsHeader {
   title?: string;
   isRenderLogout?: boolean;
 }
 
-const Header = ({ title, isRenderLogout }: IPropsHeader) => {
+const Header = ({ title, isRenderLogout }: propsHeader) => {
   const history = useHistory();
 
   const onLogout = useCallback(() => {

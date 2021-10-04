@@ -12,12 +12,12 @@ import { tokenVerify } from "utils/services/usersService";
 
 import style from "./General.module.scss";
 
-interface IPropsGeneral {
+interface propsGeneral {
   isLogin: boolean;
   setIsLogin: Dispatch<SetStateAction<boolean>>;
 }
 
-const General = ({ isLogin, setIsLogin }: IPropsGeneral) => {
+const General = ({ isLogin, setIsLogin }: propsGeneral) => {
   const dispatch = useDispatch();
 
   useEffect(() => {

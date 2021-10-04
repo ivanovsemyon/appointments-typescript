@@ -26,12 +26,12 @@ import domain from "assets/icons/Domain.svg";
 
 import style from "./Regstration.module.scss";
 
-interface IPropsRegistration {
+interface propsRegistration {
   isLogin: boolean;
   setIsLogin: Dispatch<SetStateAction<boolean>>;
 }
 
-const Registration = ({ isLogin, setIsLogin }: IPropsRegistration) => {
+const Registration = ({ isLogin, setIsLogin }: propsRegistration) => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");

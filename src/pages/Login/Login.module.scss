@@ -27,10 +27,6 @@
         }
       }
 
-      .form_input {
-        @include authentication-form-input;
-      }
-
       .form_button {
         width: 180px;
         margin-top: 40px;

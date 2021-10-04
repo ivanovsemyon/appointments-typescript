@@ -8,7 +8,7 @@ import IconButton from "common/IconButton/IconButton";
 import { DatePicker, Select } from "antd";
 import moment from "moment";
 
-import { IAppointment } from "utils/interfaces/appointmentInterfaces";
+import { appointment } from "utils/interfaces/appointmentInterfaces";
 import {
   changeAppointment,
   removeAppointment,
@@ -24,7 +24,7 @@ import style from "./TabletItem.module.scss";
 const { Option } = Select;
 
 interface ITabletItemProps {
-  item: IAppointment;
+  item: appointment;
   doctors: Array<string>;
 }
 

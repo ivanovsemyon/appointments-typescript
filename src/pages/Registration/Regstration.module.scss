@@ -26,10 +26,6 @@
         }
       }
 
-      .form_input {
-        @include authentication-form-input;
-      }
-
       .form_button {
         width: 210px;
         align-self: flex-end;

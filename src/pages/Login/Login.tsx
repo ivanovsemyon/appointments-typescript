@@ -19,12 +19,12 @@ import domain from "assets/icons/Domain.svg";
 
 import style from "./Login.module.scss";
 
-interface IPropsLogin {
+interface propsLogin {
   isLogin: boolean;
   setIsLogin: Dispatch<SetStateAction<boolean>>;
 }
 
-const Login = ({ isLogin, setIsLogin }: IPropsLogin) => {
+const Login = ({ isLogin, setIsLogin }: propsLogin) => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
 
@@ -58,6 +58,7 @@ const Login = ({ isLogin, setIsLogin }: IPropsLogin) => {
             <Input
               type="text"
               label="Login:"
+              placeholder="Login"
               value={login}
               setValue={setLogin}
               id="login"
@@ -66,6 +67,7 @@ const Login = ({ isLogin, setIsLogin }: IPropsLogin) => {
             <Input
               type="password"
               label="Password:"
+              placeholder="Password"
               value={password}
               setValue={setPassword}
               id="password"

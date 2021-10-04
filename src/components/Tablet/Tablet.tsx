@@ -6,7 +6,7 @@ import { Spin } from "antd";
 import TabletItem from "components/TabletItem";
 
 import { getAllAppointments } from "utils/services/appointmentsService";
-import { IAppointment, IState } from "utils/interfaces/appointmentInterfaces";
+import { appointment, state } from "utils/interfaces/appointmentInterfaces";
 
 import style from "./Tablet.module.scss";
 
@@ -18,7 +18,7 @@ const Tablet = ({ isLogin }: IPropsTablet) => {
   const dispatch = useDispatch();
 
   const { doctors, isLoading, appointmentsState } = useSelector(
-    (state: { appointmentsReducer: IState }) => state.appointmentsReducer
+    (state: { appointmentsReducer: state }) => state.appointmentsReducer
   );
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const Tablet = ({ isLogin }: IPropsTablet) => {
       ) : (
         <div className={style.tablet_main}>
           {!!appointmentsState?.length &&
-            appointmentsState.map((item: IAppointment) => (
+            appointmentsState.map((item: appointment) => (
               <TabletItem key={item._id} item={item} doctors={doctors} />
             ))}
         </div>

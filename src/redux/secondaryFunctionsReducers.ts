@@ -1,10 +1,7 @@
 import { filter, inRange, orderBy } from "lodash";
-import {
-  IAppointment,
-  IState,
-} from "../utils/interfaces/appointmentInterfaces";
+import { appointment, state } from "utils/interfaces/appointmentInterfaces";
 
-export const filterList = (state: IState) => {
+export const filterList = (state: state) => {
   if (state.startDate && !state.endDate) {
     return {
       ...state,
@@ -45,7 +42,7 @@ export const filterList = (state: IState) => {
   }
 };
 
-export const sortList = (state: IState) => {
+export const sortList = (state: state) => {
   if (state.sortField) {
     return {
       ...state,
@@ -55,7 +52,12 @@ export const sortList = (state: IState) => {
         state.orderBySort
       ),
     };
-  } else if (!state.sortField && state.startDate && state.endDate) {
+  } else if (
+    !state.sortField &&
+    state.startDate &&
+    state.endDate &&
+    state.isFiltered
+  ) {
     return filterList(state);
   } else {
     return {
@@ -67,8 +69,8 @@ export const sortList = (state: IState) => {
 };
 
 export const addNewAppointment = (
-  state: IState,
-  payload: Array<IAppointment>
+  state: state,
+  payload: Array<appointment>
 ) => {
   const result = {
     ...state,
@@ -83,10 +85,7 @@ export const addNewAppointment = (
   return result;
 };
 
-export const editAppointment = (
-  state: IState,
-  payload: Array<IAppointment>
-) => {
+export const editAppointment = (state: state, payload: Array<appointment>) => {
   const result = {
     ...state,
     initialState: payload,
@@ -101,8 +100,8 @@ export const editAppointment = (
 };
 
 export const deleteAppointment = (
-  state: IState,
-  payload: Array<IAppointment>
+  state: state,
+  payload: Array<appointment>
 ) => {
   const result = {
     ...state,
