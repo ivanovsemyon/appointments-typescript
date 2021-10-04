@@ -21,6 +21,7 @@
     }
   }
   .btn_filtered {
+    width: 208px;
     @media (max-width: 480px) {
       width: calc(70% - 16px);
       margin-left: auto;

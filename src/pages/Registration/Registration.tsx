@@ -17,6 +17,7 @@ import { passwordRegex } from "utils/registrationUtils";
 import domain from "assets/icons/Domain.svg";
 
 import style from "./Regstration.module.scss";
+import Button from "../../common/Button";
 
 interface IPropsRegistration {
   isLogin: boolean;
@@ -131,14 +132,23 @@ const Registration = ({ isLogin, setIsLogin }: IPropsRegistration) => {
             <div className={style.form_error_text}>
               {error.repeatPassword && <p>{error.repeatPassword}</p>}
             </div>
-            <button
-              className={style.form_button}
-              disabled={
-                !(!error.login && !error.password && !error.repeatPassword)
-              }
-            >
-              Зарегистрироваться
-            </button>
+            <div className={style.form_button}>
+              <Button
+                label="Зарегистрироваться"
+                type="outline-small"
+                disabled={
+                  !(!error.login && !error.password && !error.repeatPassword)
+                }
+              />
+            </div>
+            {/*/!*<button*!/*/}
+            {/*/!*  className={style.form_button}*!/*/}
+            {/*  // disabled={*/}
+            {/*  //   !(!error.login && !error.password && !error.repeatPassword)*/}
+            {/*  // }*/}
+            {/*/!*>*!/*/}
+            {/*/!*  Зарегистрироваться*!/*/}
+            {/*/!*</button>*!/*/}
           </form>
           <Link className={style.link_to_authorization} to="/login">
             Авторизоваться

@@ -133,6 +133,11 @@
     .iconBtn_wrapper {
       width: 18px;
       height: 18px;
+      @media (max-width: 480px) {
+        width: 25px;
+        height: 25px;
+        margin: 8px;
+      }
     }
   }
 }

@@ -24,7 +24,8 @@
         @include authentication-form-input;
       }
       .form_button {
-        @include authentication-form-btn;
+        width: 210px;
+        align-self: flex-end;
       }
       .form_error_text {
         height: 18px;

@@ -10,6 +10,7 @@ import { push } from "connected-react-router";
 import { useDispatch } from "react-redux";
 
 import Header from "components/Header";
+import Button from "common/Button";
 
 import { loginUser } from "utils/services/usersService";
 
@@ -69,7 +70,10 @@ const Login = ({ isLogin, setIsLogin }: IPropsLogin) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <button className={style.form_button}>Войти</button>
+            <div className={style.form_button}>
+              <Button label="Войти" type="outline-small" />
+            </div>
+            {/*<button className={style.form_button}>Войти</button>*/}
             <Link className={style.link_to_login} to="/register">
               Зарегистрироваться
             </Link>

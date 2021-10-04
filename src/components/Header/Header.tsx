@@ -25,7 +25,9 @@ const Header = ({ title, isRenderLogout }: IPropsHeader) => {
       <img src={logo} alt="Logo healing" className={style.header_logo} />
       <h1 className={style.header_label}>{title}</h1>
       {isRenderLogout && (
-        <Button label="Выход" type="outline" onClick={onLogout} />
+        <div className={style.header_logout_button}>
+          <Button label="Выход" type="outline" onClick={onLogout} />
+        </div>
       )}
     </header>
   );

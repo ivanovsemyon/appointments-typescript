@@ -1,4 +1,4 @@
-import "./Button.scss";
+import "./ButtonIcon.scss";
 
 const ButtonIcon = ({
   iconSrc,

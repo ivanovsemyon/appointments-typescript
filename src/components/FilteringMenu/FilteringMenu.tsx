@@ -106,12 +106,14 @@ const FilteringMenu = () => {
                 : dispatch(setEndDateAction(""));
             }}
           />
-          <Button
-            label="Фильтровать"
-            type="outline-small"
-            disabled={startDate > endDate && endDate !== "" && true}
-            onClick={filterAppointments}
-          />
+          <div className={style.btn_filtered}>
+            <Button
+              label="Фильтровать"
+              type="outline-small"
+              disabled={startDate > endDate && endDate !== "" && true}
+              onClick={filterAppointments}
+            />
+          </div>
           <div className={style.iconBtn_wrapper}>
             <ButtonIcon iconSrc={trash} onClick={deleteFilter} />
           </div>

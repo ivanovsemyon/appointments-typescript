@@ -6,7 +6,7 @@ interface IPropsButton {
   label: string;
   disabled?: boolean;
   type: "outline" | "outline-small" | "primary";
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const Button = ({ label, disabled, type, onClick }: IPropsButton) => {

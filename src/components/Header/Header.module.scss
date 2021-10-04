@@ -9,11 +9,13 @@
   }
   @media (max-width: 480px) {
     min-width: 375px;
+    padding: 0 20px;
   }
   .header_logo {
     width: 90px;
     height: 72px;
     margin: 20px 90px 20px 0;
+    user-select: none;
     @media (max-width: 767px) {
       margin: 10px 45px 10px 20px;
       width: 60px;
@@ -32,8 +34,9 @@
     }
   }
   .header_logout_button {
+    width: 156px;
     @media (max-width: 480px) {
-      margin-right: 20px;
+      width: 100px;
     }
   }
 }

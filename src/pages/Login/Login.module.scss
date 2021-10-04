@@ -25,8 +25,9 @@
         @include authentication-form-input;
       }
       .form_button {
+        width: 180px;
         margin-top: 40px;
-        @include authentication-form-btn;
+        align-self: flex-end;
       }
     }
     .link_to_login {
