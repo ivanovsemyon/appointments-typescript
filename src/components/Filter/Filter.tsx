@@ -21,9 +21,9 @@ import { searchParams } from "utils/interfaces/appointmentInterfaces";
 import calendar from "assets/icons/Calendar.svg";
 import trash from "assets/icons/Trash.svg";
 
-import style from "./FilteringMenu.module.scss";
+import style from "./Filter.module.scss";
 
-const FilteringMenu = () => {
+const Filter = () => {
   const dispatch = useDispatch();
 
   const { isFiltered, startDate, endDate, sortField, orderBySort } =
@@ -113,4 +113,4 @@ const FilteringMenu = () => {
   );
 };
 
-export default FilteringMenu;
+export default Filter;

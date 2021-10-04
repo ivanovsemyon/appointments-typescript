@@ -3,9 +3,9 @@ import { push } from "connected-react-router";
 import { useDispatch } from "react-redux";
 
 import AddNewAppointment from "components/AddNewAppointment";
-import FilteringMenu from "components/FilteringMenu";
+import Filter from "components/Filter";
 import Header from "components/Header";
-import SortMenu from "components/SortMenu";
+import Sort from "components/Sort";
 import Tablet from "components/Tablet";
 
 import { tokenVerify } from "utils/services/usersService";
@@ -37,8 +37,8 @@ const General = ({ isLogin, setIsLogin }: propsGeneral) => {
       <Header title="Приемы" isRenderLogout />
       <main className={style.general_appointments}>
         <AddNewAppointment />
-        <SortMenu />
-        <FilteringMenu />
+        <Sort />
+        <Filter />
         <Tablet isLogin={isLogin} />
       </main>
     </>

@@ -19,11 +19,11 @@ import { searchParams } from "utils/interfaces/appointmentInterfaces";
 import addFilter from "assets/icons/AddFilter.svg";
 import arrow from "assets/icons/Arrow-bottom.svg";
 
-import style from "./SortMenu.module.scss";
+import style from "./Sort.module.scss";
 
 const { Option } = Select;
 
-const SortMenu = () => {
+const Sort = () => {
   const dispatch = useDispatch();
 
   const {
@@ -122,4 +122,4 @@ const SortMenu = () => {
   );
 };
 
-export default SortMenu;
+export default Sort;
