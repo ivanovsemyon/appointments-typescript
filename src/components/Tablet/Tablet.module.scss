@@ -2,6 +2,7 @@
   width: 90%;
   margin: 24px auto;
   text-align: center;
+
   .name {
     display: flex;
     align-items: center;
@@ -11,6 +12,7 @@
       width: 100%;
     }
   }
+
   .doctor {
     display: flex;
     align-items: center;
@@ -20,6 +22,7 @@
       width: 100%;
     }
   }
+
   .date {
     display: flex;
     align-items: center;
@@ -29,12 +32,14 @@
       width: 100%;
     }
   }
+
   .complaint {
     width: 20%;
     @media (max-width: 480px) {
       width: 100%;
     }
   }
+
   .tablet_header {
     display: flex;
     align-items: stretch;
@@ -43,6 +48,7 @@
     @media (max-width: 480px) {
       display: none;
     }
+
     .tablet_header_title {
       font-size: 18px;
       margin-top: 24px;
@@ -52,9 +58,11 @@
       }
     }
   }
+
   .spin {
     margin-top: 20px;
   }
+
   .tablet_main {
     background: #ffffff;
     border: 1px solid #000000;

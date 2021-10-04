@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { DatePicker, Select } from "antd";
@@ -22,26 +22,31 @@ const AddNewAppointment = () => {
   const [complaint, setComplaint] = useState("");
 
   const dispatch = useDispatch();
+
   const doctors = useSelector(
     (state: { appointmentsReducer: IState }) =>
       state.appointmentsReducer.doctors
   );
 
+  const disabledBtn = useMemo(() => {
+    return !name.trim() || !doctor.trim() || !date.trim() || !complaint.trim();
+  }, [name, doctor, date, complaint]);
+
   const addNewAppointment = useCallback(() => {
-    if (name && doctor && date && complaint) {
+    if (!disabledBtn) {
       dispatch(
         createAppointment({
-          name: name.trim(),
-          doctor: doctor.trim(),
-          date: date.trim(),
-          complaint: complaint.trim(),
+          name,
+          doctor,
+          date,
+          complaint,
         })
       );
       setName("");
       setDoctor("");
       setComplaint("");
     }
-  }, [name, doctor, date, complaint, dispatch]);
+  }, [disabledBtn, name, doctor, date, complaint, dispatch]);
 
   return (
     <div className={style.general_form}>
@@ -90,7 +95,7 @@ const AddNewAppointment = () => {
       <div className={style.general_appointments_button}>
         <Button
           label="Добавить"
-          disabled={!name || !doctor || !date || !complaint}
+          disabled={disabledBtn}
           type="outline"
           onClick={addNewAppointment}
         />

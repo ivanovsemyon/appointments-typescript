@@ -1,25 +1,42 @@
-@import "src/assets/mixins";
-
 .modal_appointment_wrapper {
-  @include modal-wrapper;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(196, 196, 196, 0.9);
+  z-index: 1;
+
   .modal_appointment {
-    @include modal-body;
+    position: fixed;
+    width: 642px;
+    background: white;
+    border-radius: 4px;
+    left: calc(50% - 321px);
     top: 150px;
+
     .modal_appointment_header {
-      @include modal-header;
+      font-size: 36px;
+      padding: 24px 40px;
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     }
+
     .modal_edit_appointment_form {
       font-size: 18px;
 
       .modal_delete_appointment_input_wrapper {
         display: flex;
         flex-direction: column;
+        gap: 10px;
         padding: 24px 30px 50px 40px;
+
+        label {
+          text-align: initial;
+        }
 
         .modal_edit_appointment_form_input {
           height: 40px;
           padding: 0 0 0 20px;
-          margin: 8px 0 18px 0;
           outline: none;
           background: #ffffff;
           border: 1px solid rgba(0, 0, 0, 0.2);
@@ -35,6 +52,7 @@
         }
       }
     }
+
     .modal_appointment_text {
       font-size: 24px;
       padding: 30px 44px 35px;
@@ -45,8 +63,18 @@
         font-size: 18px;
       }
     }
-    .modal_appointment_btn_wrapper {
-      @include modal-btn;
+
+    .modal_appointment_btns_wrapper {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.25);
+
+      .modal_appointment_btn_wrapper {
+        width: 146px;
+      }
     }
   }
 }

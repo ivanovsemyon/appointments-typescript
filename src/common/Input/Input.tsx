@@ -1,26 +1,30 @@
+import style from "./Input.module.scss";
+
 interface input {
+  type: "text" | "password";
   label: string;
-  className: string;
+  placeholder?: string;
   value: string;
-  setName: (e: string) => void;
+  setValue: (e: string) => void;
   id: string;
 }
 
-const Input = ({ label, className, value, setName, id }: input) => {
-  return (
-    <>
-      <label htmlFor={id}>{label}</label>
-      <input
-        type="text"
-        id={id}
-        className={className}
-        value={value}
-        onChange={(e) => {
-          setName(e.target.value);
-        }}
-      />
-    </>
-  );
-};
+const Input = ({ type, label, placeholder, value, setValue, id }: input) => (
+  <>
+    <label htmlFor={id} className={style.label}>
+      {label}
+    </label>
+    <input
+      type={type}
+      placeholder={placeholder}
+      id={id}
+      value={value}
+      className={style.input}
+      onChange={(e) => {
+        setValue(e.target.value);
+      }}
+    />
+  </>
+);
 
 export default Input;

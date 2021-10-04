@@ -9,6 +9,7 @@
     justify-content: center;
     gap: 8px;
   }
+
   .filter_text {
     font-size: 18px;
     margin: 0;
@@ -20,6 +21,7 @@
       width: calc(10% - 8px);
     }
   }
+
   .btn_filtered {
     width: 208px;
     @media (max-width: 480px) {
@@ -27,6 +29,7 @@
       margin-left: auto;
     }
   }
+
   .iconBtn_wrapper {
     width: 30px;
     height: 30px;

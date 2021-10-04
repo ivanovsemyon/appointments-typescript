@@ -1,3 +1,5 @@
+import { useMemo } from "react";
+
 import cn from "classnames";
 
 import "./Button.scss";
@@ -10,9 +12,11 @@ interface IPropsButton {
 }
 
 const Button = ({ label, disabled, type, onClick }: IPropsButton) => {
-  const className = cn("button", `button--${type}`, {
-    "button--disabled": disabled,
-  });
+  const className = useMemo(() => {
+    return cn("button", `button--${type}`, {
+      "button--disabled": disabled,
+    });
+  }, [type, disabled]);
 
   return (
     <button className={className} onClick={onClick} disabled={disabled}>

@@ -16,19 +16,21 @@ const Modal = ({
   onClickCancel,
   buttonLabel,
   onClickAction,
-}: modal) => {
-  return (
-    <div className="modal_appointment_wrapper">
-      <div className="modal_appointment">
-        <h3 className="modal_appointment_header">{header}</h3>
-        {children}
+}: modal) => (
+  <div className="modal_appointment_wrapper">
+    <div className="modal_appointment">
+      <h3 className="modal_appointment_header">{header}</h3>
+      {children}
+      <div className="modal_appointment_btns_wrapper">
         <div className="modal_appointment_btn_wrapper">
           <Button type="outline-small" label="Cancel" onClick={onClickCancel} />
+        </div>
+        <div className="modal_appointment_btn_wrapper">
           <Button type="primary" label={buttonLabel} onClick={onClickAction} />
         </div>
       </div>
     </div>
-  );
-};
+  </div>
+);
 
 export default Modal;

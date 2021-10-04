@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import { push } from "connected-react-router";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -6,9 +6,10 @@ import {
   setFilteredAction,
   setOrderBySortAction,
   setSortFieldAction,
-} from "../../redux/actions";
+} from "redux/actions";
+import { applicationState } from "redux/store";
 
-import ButtonIcon from "../../common/ButtonIcon/ButtonIcon";
+import IconButton from "common/IconButton/IconButton";
 
 import { Select } from "antd";
 import queryString from "query-string";
@@ -19,71 +20,36 @@ import addFilter from "assets/icons/AddFilter.svg";
 import arrow from "assets/icons/Arrow-bottom.svg";
 
 import style from "./SortMenu.module.scss";
-import { applicationState } from "../../redux/store";
 
 const { Option } = Select;
 
 const SortMenu = () => {
   const dispatch = useDispatch();
 
-  const sortFieldIsSelected = useSelector(
-    (state: applicationState) => state.appointmentsReducer.sortField
-  );
-  const listOfFieldsSort = useSelector(
-    (state: applicationState) => state.appointmentsReducer.listOfFieldsSort
-  );
-  const orderListSort = useSelector(
-    (state: applicationState) => state.appointmentsReducer.orderListSort
-  );
-  const orderBySort = useSelector(
-    (state: applicationState) => state.appointmentsReducer.orderBySort
-  );
-  const startDate = useSelector(
-    (state: applicationState) => state.appointmentsReducer.startDate
-  );
-  const endDate = useSelector(
-    (state: applicationState) => state.appointmentsReducer.endDate
-  );
-  const isFiltered = useSelector(
-    (state: applicationState) => state.appointmentsReducer.isFiltered
-  );
-
-  const history = useSelector(
-    (state: applicationState) => state.router.location
-  );
-
-  useEffect(() => {
-    if (history.query.sortField) {
-      dispatch(setSortFieldAction(history.query.sortField));
-      dispatch(setOrderBySortAction(history.query.orderBySort));
-      dispatch(appointmentsSortAction());
-    }
-  }, [history, dispatch]);
+  const {
+    sortField,
+    listOfFieldsSort,
+    orderListSort,
+    orderBySort,
+    startDate,
+    endDate,
+    isFiltered,
+  } = useSelector((state: applicationState) => state.appointmentsReducer);
 
   const selectFieldSortBy = useCallback(
     (value) => {
+      dispatch(setSortFieldAction(value));
+      dispatch(appointmentsSortAction());
+      const search: searchParams = {};
+      if (startDate) search.startDate = startDate;
+      if (endDate) search.endDate = endDate;
       if (value) {
-        dispatch(setSortFieldAction(value));
-        dispatch(appointmentsSortAction());
-        const search: searchParams = {
-          sortField: value,
-          orderBySort,
-        };
-        if (startDate) search.startDate = startDate;
-        if (endDate) search.endDate = endDate;
-        dispatch(
-          push({ pathname: "/general", search: queryString.stringify(search) })
-        );
-      } else {
-        dispatch(setSortFieldAction(value));
-        dispatch(appointmentsSortAction());
-        const search: searchParams = {};
-        if (startDate) search.startDate = startDate;
-        if (endDate) search.endDate = endDate;
-        dispatch(
-          push({ pathname: "/general", search: queryString.stringify(search) })
-        );
+        search.sortField = value;
+        search.orderBySort = orderBySort;
       }
+      dispatch(
+        push({ pathname: "/general", search: queryString.stringify(search) })
+      );
     },
     [dispatch, orderBySort, startDate, endDate]
   );
@@ -93,7 +59,7 @@ const SortMenu = () => {
       dispatch(setOrderBySortAction(value));
       dispatch(appointmentsSortAction());
       const search: searchParams = {
-        sortField: sortFieldIsSelected,
+        sortField: sortField,
         orderBySort: value,
       };
       if (startDate) search.startDate = startDate;
@@ -102,8 +68,12 @@ const SortMenu = () => {
         push({ pathname: "/general", search: queryString.stringify(search) })
       );
     },
-    [dispatch, sortFieldIsSelected, startDate, endDate]
+    [dispatch, sortField, startDate, endDate]
   );
+
+  const showFilterBlock = useCallback(() => {
+    dispatch(setFilteredAction(true));
+  }, [dispatch]);
 
   return (
     <div className={style.sort_wrapper}>
@@ -121,7 +91,7 @@ const SortMenu = () => {
           </Option>
         ))}
       </Select>
-      {sortFieldIsSelected && (
+      {sortField && (
         <>
           <p className={style.sort_wrapper_text}>Направление:</p>
           <Select
@@ -144,10 +114,7 @@ const SortMenu = () => {
         <div className={style.add_filter_wrapper}>
           <p className={style.sort_wrapper_text}>Добавить фильтр по дате:</p>
           <div className={style.iconBtn_wrapper}>
-            <ButtonIcon
-              iconSrc={addFilter}
-              onClick={() => dispatch(setFilteredAction(true))}
-            />
+            <IconButton iconSrc={addFilter} onClick={showFilterBlock} />
           </div>
         </div>
       )}

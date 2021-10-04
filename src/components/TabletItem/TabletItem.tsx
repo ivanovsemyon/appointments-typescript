@@ -2,8 +2,8 @@ import { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import Input from "common/Input";
-import Modal from "common/Modal";
-import ButtonIcon from "../../common/ButtonIcon/ButtonIcon";
+import Modal from "components/Modal";
+import IconButton from "common/IconButton/IconButton";
 
 import { DatePicker, Select } from "antd";
 import moment from "moment";
@@ -94,10 +94,10 @@ const TabletItem = ({ item, doctors }: ITabletItemProps) => {
       </div>
       <div className={style.tablet_row_item_button_wrapper}>
         <div className={style.iconBtn_wrapper}>
-          <ButtonIcon iconSrc={trash} onClick={showModalDelete} />
+          <IconButton iconSrc={trash} onClick={showModalDelete} />
         </div>
         <div className={style.iconBtn_wrapper}>
-          <ButtonIcon iconSrc={pencil} onClick={showModalEdit} />
+          <IconButton iconSrc={pencil} onClick={showModalEdit} />
         </div>
       </div>
       {isDeleting && (
@@ -122,18 +122,19 @@ const TabletItem = ({ item, doctors }: ITabletItemProps) => {
           <div className="modal_edit_appointment_form">
             <div className="modal_delete_appointment_input_wrapper">
               <Input
+                type="text"
                 label="Имя:"
                 value={name}
-                className="modal_edit_appointment_form_input"
-                setName={setName}
+                setValue={setName}
                 id="name"
               />
-              <label>Врач:</label>
+              <label htmlFor="doctor">Врач:</label>
               <Select
                 className="modal-edit-appointment-select"
                 value={doctor}
                 suffixIcon={<img src={arrow} alt="arrow-down" />}
                 onChange={(value) => setDoctor(value)}
+                id="doctor"
               >
                 {doctors.map((item, index) => (
                   <Option value={item} key={index}>
@@ -141,19 +142,21 @@ const TabletItem = ({ item, doctors }: ITabletItemProps) => {
                   </Option>
                 ))}
               </Select>
-              <label>Дата:</label>
+              <label htmlFor="data">Дата:</label>
               <DatePicker
                 className="modal-edit-appointment-datepicker"
                 defaultValue={moment(date, "YYYY-MM-DD")}
                 suffixIcon={<img src={calendar} alt="calendar" />}
                 placeholder=""
                 onChange={(date, dateStr) => setDate(dateStr)}
+                id="data"
               />
-              <label>Жалобы:</label>
+              <label htmlFor="complaint">Жалобы:</label>
               <textarea
                 className="modal_edit_appointment_form_input complaint_input"
                 value={complaint}
                 onChange={(e) => setComplaint(e.target.value)}
+                id="complaint"
               />
             </div>
           </div>

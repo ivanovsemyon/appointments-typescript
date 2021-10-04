@@ -2,17 +2,22 @@
 
 .login_content {
   @include authentication-body;
+
   .login_domain_image {
     @include authentication-image;
   }
+
   .form_container {
     @include authentication-form-body;
+
     .form_label {
       @include authentication-form-header;
     }
+
     .registration_form {
       display: flex;
       flex-direction: column;
+
       .form_text {
         margin-top: 18px;
         font-weight: 300;
@@ -21,15 +26,33 @@
           font-size: 16px;
         }
       }
+
       .form_input {
         @include authentication-form-input;
       }
+
       .form_button {
         width: 180px;
         margin-top: 40px;
         align-self: flex-end;
       }
+
+      .form_error_text {
+        height: 18px;
+        color: red;
+        font-size: 12px;
+        line-height: 18px;
+
+        p {
+          padding-left: 5px;
+          margin: 0;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+      }
     }
+
     .link_to_login {
       margin-top: 18px;
       @include authentication-form-link;

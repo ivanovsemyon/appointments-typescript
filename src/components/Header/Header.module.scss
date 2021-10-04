@@ -11,6 +11,7 @@
     min-width: 375px;
     padding: 0 20px;
   }
+
   .header_logo {
     width: 90px;
     height: 72px;
@@ -22,6 +23,7 @@
       height: 48px;
     }
   }
+
   .header_label {
     font-weight: 300;
     font-size: 36px;
@@ -33,6 +35,7 @@
       font-size: 24px;
     }
   }
+
   .header_logout_button {
     width: 156px;
     @media (max-width: 480px) {

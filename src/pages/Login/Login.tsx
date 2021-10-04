@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 
 import Header from "components/Header";
 import Button from "common/Button";
+import Input from "common/Input";
 
 import { loginUser } from "utils/services/usersService";
 
@@ -54,26 +55,24 @@ const Login = ({ isLogin, setIsLogin }: IPropsLogin) => {
             className={style.registration_form}
             onSubmit={(e) => onLogin(e)}
           >
-            <label className={style.form_text}>Login:</label>
-            <input
+            <Input
               type="text"
-              className={style.form_input}
-              placeholder="Login"
+              label="Login:"
               value={login}
-              onChange={(e) => setLogin(e.target.value)}
+              setValue={setLogin}
+              id="login"
             />
-            <label className={style.form_text}>Password:</label>
-            <input
+            <div className={style.form_error_text}></div>
+            <Input
               type="password"
-              className={style.form_input}
-              placeholder="Password"
+              label="Password:"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              setValue={setPassword}
+              id="password"
             />
             <div className={style.form_button}>
               <Button label="Войти" type="outline-small" />
             </div>
-            {/*<button className={style.form_button}>Войти</button>*/}
             <Link className={style.link_to_login} to="/register">
               Зарегистрироваться
             </Link>

@@ -1,6 +1,10 @@
 import { Dispatch, SetStateAction } from "react";
 import axios from "axios";
 import baseRoute from "../baseRoute";
+import {
+  errorPassword,
+  errorRepeatPassword,
+} from "../../pages/Registration/errorConstants";
 
 export const loginUser = (
   login: string,
@@ -24,16 +28,16 @@ export const registrationUser = (
   password: string,
   repeatPassword: string,
   setIsLogin: Dispatch<SetStateAction<boolean>>,
-  setError: (
-    value:
-      | ((prevState: {
-          password: string;
-          repeatPassword: string;
-          login: string;
-        }) => { password: string; repeatPassword: string; login: string })
-      | { password: string; repeatPassword: string; login: string }
-  ) => void,
-  error: { password: string; repeatPassword: string; login: string }
+  setError: (value: {
+    errorLogin: string;
+    errorPassword: string;
+    errorRepeatPassword: string;
+  }) => void,
+  error: {
+    errorLogin: string;
+    errorPassword: string;
+    errorRepeatPassword: string;
+  }
 ) => {
   axios
     .post(baseRoute("registrationUser"), {
@@ -50,17 +54,17 @@ export const registrationUser = (
       if (errorBackend.response.data.login) {
         setError({
           ...error,
-          login: errorBackend.response.data.login,
+          errorLogin: errorBackend.response.data.login,
         });
       } else if (errorBackend.response.data.password) {
         setError({
           ...error,
-          password: errorBackend.response.data.password,
+          errorPassword: errorBackend.response.data.password,
         });
       } else if (errorBackend.response.data.repeatPassword) {
         setError({
           ...error,
-          repeatPassword: errorBackend.response.data.repeatPassword,
+          errorRepeatPassword: errorBackend.response.data.repeatPassword,
         });
       } else {
         console.log("Введены некорректные данные");

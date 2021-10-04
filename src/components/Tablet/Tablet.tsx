@@ -17,17 +17,8 @@ interface IPropsTablet {
 const Tablet = ({ isLogin }: IPropsTablet) => {
   const dispatch = useDispatch();
 
-  const doctors = useSelector(
-    (state: { appointmentsReducer: IState }) =>
-      state.appointmentsReducer.doctors
-  );
-  const isLoading = useSelector(
-    (state: { appointmentsReducer: IState }) =>
-      state.appointmentsReducer.isLoading
-  );
-  const appointments = useSelector(
-    (state: { appointmentsReducer: IState }) =>
-      state.appointmentsReducer.appointmentsState
+  const { doctors, isLoading, appointmentsState } = useSelector(
+    (state: { appointmentsReducer: IState }) => state.appointmentsReducer
   );
 
   useEffect(() => {
@@ -51,11 +42,11 @@ const Tablet = ({ isLogin }: IPropsTablet) => {
         </h3>
       </div>
       {isLoading ? (
-        <Spin className={style.spin} size={"large"} />
+        <Spin className={style.spin} size="large" />
       ) : (
         <div className={style.tablet_main}>
-          {!!appointments?.length &&
-            appointments.map((item: IAppointment) => (
+          {!!appointmentsState?.length &&
+            appointmentsState.map((item: IAppointment) => (
               <TabletItem key={item._id} item={item} doctors={doctors} />
             ))}
         </div>
