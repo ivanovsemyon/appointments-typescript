@@ -1,4 +1,4 @@
-Create a .env file in the project root directory and add a base url in REACT_APP_BASE_URL variable
+Create a .env file in the project root folder and add a base url in REACT_APP_BASE_URL variable
 
 ## Available Scripts
 

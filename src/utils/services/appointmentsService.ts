@@ -86,10 +86,14 @@ export class API {
   }
 }
 
-export const getAllAppointments = () => {
+export const getAllAppointments = (token: string | null) => {
   return (dispatch: AppDispatch) => {
     axios
-      .get(baseRoute("getAllAppointments"))
+      .get(baseRoute("getAllAppointments"), {
+        headers: {
+          "x-access-token": token,
+        },
+      })
       .then((result): { payload: Array<appointment>; type: string } =>
         dispatch(getAppointments(result.data))
       );

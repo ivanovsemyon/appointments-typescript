@@ -100,9 +100,9 @@ const Registration = ({ isLogin, setIsLogin }: propsRegistration) => {
 
   const disabledBtn = useMemo(() => {
     return (
-      !error.errorLogin && !error.errorPassword && !error.errorRepeatPassword
+      !!error.errorLogin && !!error.errorPassword && !!error.errorRepeatPassword
     );
-  }, [error]);
+  }, [error.errorLogin, error.errorPassword, error.errorRepeatPassword]);
 
   return (
     <>

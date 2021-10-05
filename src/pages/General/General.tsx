@@ -21,8 +21,8 @@ const General = ({ isLogin, setIsLogin }: propsGeneral) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!!localStorage.getItem("token") && !!localStorage.getItem("user")) {
-      tokenVerify(setIsLogin);
+    if (!!localStorage.getItem("token")) {
+      // console.log(tokenVerify(setIsLogin));
     } else {
       setIsLogin(false);
     }

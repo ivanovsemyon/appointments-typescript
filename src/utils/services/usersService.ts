@@ -14,7 +14,7 @@ export const loginUser = (
     })
     .then((result) => {
       localStorage.setItem("token", result.data.token);
-      localStorage.setItem("user", login);
+      localStorage.setItem("refreshToken", result.data.refreshToken);
       setIsLogin(true);
     });
 };
@@ -72,9 +72,9 @@ export const tokenVerify = (setIsLogin: Dispatch<SetStateAction<boolean>>) => {
   axios
     .post(baseRoute("verify"), {
       token: localStorage.getItem("token"),
-      user: localStorage.getItem("user"),
     })
     .then((result) => {
-      setIsLogin(result.data.isLogin);
+      console.log(result);
+      setIsLogin(result.data);
     });
 };

@@ -22,12 +22,8 @@ const Tablet = ({ isLogin }: IPropsTablet) => {
   );
 
   useEffect(() => {
-    if (
-      isLogin &&
-      !!localStorage.getItem("token") &&
-      !!localStorage.getItem("user")
-    ) {
-      dispatch(getAllAppointments());
+    if (isLogin && !!localStorage.getItem("token")) {
+      dispatch(getAllAppointments(localStorage.getItem("token")));
     }
   }, [isLogin, dispatch]);
 
