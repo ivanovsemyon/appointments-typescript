@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { DatePicker, Select } from "antd";
 
-import Button from "common/Button";
+import { Button } from "common";
 
 import { createAppointment } from "utils/services/appointmentsService";
 import { state } from "utils/interfaces/appointmentInterfaces";
@@ -34,12 +34,15 @@ const AddNewAppointment = () => {
   const addNewAppointment = useCallback(() => {
     if (!disabledBtn) {
       dispatch(
-        createAppointment({
-          name,
-          doctor,
-          date,
-          complaint,
-        })
+        createAppointment(
+          {
+            name,
+            doctor,
+            date,
+            complaint,
+          },
+          localStorage.getItem("token")
+        )
       );
       setName("");
       setDoctor("");

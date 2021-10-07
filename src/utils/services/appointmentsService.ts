@@ -94,69 +94,103 @@ export const getAllAppointments = (token: string | null) => {
           "x-access-token": token,
         },
       })
-      .then((result): { payload: Array<appointment>; type: string } =>
-        dispatch(getAppointments(result.data))
-      );
+      .then((result): { payload: Array<appointment>; type: string } => {
+        return dispatch(getAppointments(result.data));
+      })
+      .catch((e) => {
+        console.log(e.response);
+        if (e.response.data.expired) {
+          console.log(e.response.data.expired);
+        } else if (e.response.data.unauthorized) {
+          console.log(e.response.data.unauthorized);
+        }
+      });
   };
 };
 
-export const createAppointment = ({
-  name,
-  doctor,
-  date,
-  complaint,
-}: {
-  name: string;
-  doctor: string;
-  date: string;
-  complaint: string;
-}) => {
+export const createAppointment = (
+  {
+    name,
+    doctor,
+    date,
+    complaint,
+  }: {
+    name: string;
+    doctor: string;
+    date: string;
+    complaint: string;
+  },
+  token: string | null
+) => {
   return (dispatch: AppDispatch) => {
     axios
-      .post(baseRoute("createAppointment"), {
-        name: name,
-        doctor: doctor,
-        date: date,
-        complaint: complaint,
-      })
+      .post(
+        baseRoute("createAppointment"),
+        {
+          name: name,
+          doctor: doctor,
+          date: date,
+          complaint: complaint,
+        },
+        {
+          headers: {
+            "x-access-token": token,
+          },
+        }
+      )
       .then((result: { data: Array<appointment> }) => {
         dispatch(addAppointment(result.data));
       });
   };
 };
 
-export const changeAppointment = ({
-  _id,
-  name,
-  doctor,
-  date,
-  complaint,
-}: {
-  _id: string;
-  name: string;
-  doctor: string;
-  date: string;
-  complaint: string;
-}) => {
+export const changeAppointment = (
+  {
+    _id,
+    name,
+    doctor,
+    date,
+    complaint,
+  }: {
+    _id: string;
+    name: string;
+    doctor: string;
+    date: string;
+    complaint: string;
+  },
+  token: string | null
+) => {
   return (dispatch: AppDispatch) => {
     axios
-      .post(baseRoute("editAppointment"), {
-        _id: _id,
-        name: name,
-        doctor: doctor,
-        date: date,
-        complaint: complaint,
-      })
+      .post(
+        baseRoute("editAppointment"),
+        {
+          _id: _id,
+          name: name,
+          doctor: doctor,
+          date: date,
+          complaint: complaint,
+        },
+        {
+          headers: {
+            "x-access-token": token,
+          },
+        }
+      )
       .then((result: { data: Array<appointment> }) =>
         dispatch(editAppointmentAction(result.data))
       );
   };
 };
 
-export const removeAppointment = (id: string) => {
+export const removeAppointment = (id: string, token: string | null) => {
   return (dispatch: AppDispatch) => {
     axios
-      .delete(baseRoute(`deleteAppointments?id=${id}`))
+      .delete(baseRoute(`deleteAppointments?id=${id}`), {
+        headers: {
+          "x-access-token": token,
+        },
+      })
       .then((res: { data: Array<appointment> }) => {
         dispatch(deleteAppointment(res.data));
       });

@@ -61,19 +61,22 @@ const TabletItem = ({ item, doctors }: ITabletItemProps) => {
   ]);
 
   const deleteAppointment = useCallback(() => {
-    dispatch(removeAppointment(item._id));
+    dispatch(removeAppointment(item._id, localStorage.getItem("token")));
     setIsDeleting(false);
   }, [item._id, dispatch, setIsDeleting]);
 
   const editAppointment = useCallback(() => {
     dispatch(
-      changeAppointment({
-        _id: item._id,
-        name: name,
-        doctor: doctor,
-        date: date,
-        complaint: complaint,
-      })
+      changeAppointment(
+        {
+          _id: item._id,
+          name: name,
+          doctor: doctor,
+          date: date,
+          complaint: complaint,
+        },
+        localStorage.getItem("token")
+      )
     );
     setIsEditing(false);
   }, [dispatch, item._id, name, doctor, date, complaint, setIsEditing]);

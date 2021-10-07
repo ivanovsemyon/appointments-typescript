@@ -5,7 +5,7 @@ interface input {
   label: string;
   placeholder?: string;
   value: string;
-  setValue: (e: string) => void;
+  setValue: (value: string) => void;
   id: string;
 }
 
